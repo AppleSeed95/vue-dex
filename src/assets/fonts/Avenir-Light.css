@@ -1,0 +1,12 @@
+/* Webfont: Avenir-Light */@font-face {
+    font-family: 'AvenirLight';
+    src: url('Avenir-Light.eot'); /* IE9 Compat Modes */
+    src: url('Avenir-Light.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('Avenir-Light.woff') format('woff'), /* Modern Browsers */
+         url('Avenir-Light.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('Avenir-Light.svg#Avenir-Light') format('svg'); /* Legacy iOS */
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
