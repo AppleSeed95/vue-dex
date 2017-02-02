@@ -1,0 +1,124 @@
+.nav {
+  &-main {
+    background-color: $pal-red;
+    height: 80px;
+
+    a {
+      color: $pal-white;
+      font-size: $size-large;
+    }
+  }
+
+  &-stages {
+    height: 60px;
+    border-bottom: 3px solid $pal-gray;
+  }
+}
+
+// Stage Mode Selector
+
+.mode {
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+
+    &:checked + label::after {
+      margin-left: 55px;
+    }
+  }
+
+  > label {
+    order: 2;
+    display: block;
+    width: 90px;
+    height: 32px;
+    background-color: $pal-red;
+    border-radius: 50px;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+
+    &::before, &::after {
+      position: absolute;
+      content: '';
+    }
+
+    &::before {
+      top: 2px;
+      left: 2px;
+      bottom: 2px;
+      right: 2px;
+      background-color: $pal-white;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+    }
+
+    &::after {
+      top: 3px;
+      left: 4px;
+      background-color: $pal-red;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+  }
+
+  @include mobile {
+    input[type=checkbox]:checked ~ .modeIndicator-main {
+        visibility: hidden;
+      }
+
+    input[type=checkbox]:checked ~ .modeIndicator-expert {
+      visibility: visible;
+    }
+  }
+
+  &Indicator {
+		&-main {
+			order: 1;
+		}
+
+		&-expert {
+			order: 3;
+		}
+
+    @include mobile {
+      position: absolute;
+      font-size: 0.85rem;
+      right: 6px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1;
+
+      &-main {
+        visibility: hidden;
+        right: 24px;
+      }
+
+      &-expert {
+        visibility: visible;
+      }
+    }
+	}
+}
+
+// Stage ID Selector
+
+.stages {
+  &Selector {
+    border: none;
+    border-bottom: 2px solid $pal-gray;
+    line-height: $size-medium;
+    font-size: $size-normal;
+    outline: none;
+    width: 120px;
+    text-align: center;
+  }
+}
