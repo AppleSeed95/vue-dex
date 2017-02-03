@@ -3,7 +3,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App'
+
+// OUTER WRAPPER STAGE //
 import Stage from 'components/Stage.vue'
+
+// OVERVIEW SECTION //
+import SectionOverview from 'components/SectionOverview.vue'
+import OverviewStage from 'components/OverviewStage.vue'
+import OverviewPokemon from 'components/OverviewPokemon.vue'
 
 Vue.use(VueRouter)
 /* eslint-disable no-new */

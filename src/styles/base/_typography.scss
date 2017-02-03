@@ -1,0 +1,40 @@
+@mixin font-size($size) {
+  @if type-of($size) == 'number' and not unitless($size) {
+    $size: $size / ($size * 0 + 1);
+  }
+
+  font-size: ($size * 14px);
+  font-size: ($size + 0rem);
+}
+
+@mixin title-section {
+  @include font-size(36px/14);
+  font-family: AvenirHeavy, Arial, Helvetica, Verdana, Tahoma;
+  line-height: 1.0577em;
+}
+
+@mixin title-card {
+  @include font-size(24px/14);
+  font-family: AvenirRoman, Arial, Helvetica, Verdana, Tahoma;
+  line-height: 1.0577em;
+}
+
+@mixin title-tile {
+  @include font-size(24px/14);
+  font-family: AvenirHeavy, Arial, Helvetica, Verdana, Tahoma;
+  line-height: 1.0577em;
+}
+
+@mixin text-label {
+  @include font-size(12px/14);
+  font-family: AvenirHeavy, Arial, Helvetica, Verdana, Tahoma;
+  line-height: 1.2em;
+  letter-spacing: 0.0122em;
+  text-transform: uppercase;
+}
+
+@mixin text-std {
+  @include font-size(16px/14);
+  font-family: AvenirRoman, Arial, Helvetica, Verdana, Tahoma;
+  line-height: 1.4285em;
+}

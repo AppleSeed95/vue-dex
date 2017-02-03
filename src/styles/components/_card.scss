@@ -1,0 +1,103 @@
+// override card styling from Bulma
+.card {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), inset 0 5px $pal-navy;
+  background: $pal-white;
+  color: $pal-black;
+  padding: 40px;
+  margin-top: 60px;
+
+  &_tag {
+    position: absolute;
+    background: $pal-navy;
+    color: $pal-white;
+    right: 0;
+    top: -26px;
+    border-radius: 10px 10px 0 0;
+    min-width: 120px;
+    height: 26px;
+    padding-top: 7px;
+    @include text-label;
+    text-align: center;
+  }
+}
+
+// card styling in overview section
+.card-overview {
+  border-radius: 0 0 30px 0;
+
+  h2 {
+    @include title-card;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .glance {
+    position: relative;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    line-height: 40px;
+
+    &:after {
+      position: absolute;
+      content: '';
+      width: 100%;
+      height: 5px;
+      background: $pal-red;
+      bottom: -10px;
+      left: 0;
+    }
+
+    > strong {
+      display: inline-block;
+      width: 120px;
+      text-align: left;
+    }
+
+    > span {
+      display: inline-block;
+      text-align: right;
+    }
+
+    &:last-of-type {
+      &:after {
+        display: none;
+      }
+    }
+  }
+
+  &Stage {
+    .stage_visuals {
+      display: flex;
+      align-items: center;
+
+      > img {
+        width: 100%;
+        display: block;
+        margin: 0 auto;
+      }
+    }
+
+    .stage_supportLimit {
+      position: absolute;
+      bottom: -40px;
+      right: -40px;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 5px solid $pal-white;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+      background-color: $pal-turquoise;
+      background-repeat: no-repeat;
+      background-position: 50%;
+
+      &-4 {
+        background-image: url("~/assets/supportLim-4.png");
+      }
+
+      &-3 {
+        background-image: url("~/assets/supportLim-4.png");
+      }
+    }
+  }
+}

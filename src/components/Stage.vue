@@ -1,47 +1,29 @@
 <template>
   <div class="stage">
-    <h1>{{ msg }}</h1>
+    <section-overview></section-overview>
   </div>
 </template>
 
 <script>
+import SectionOverview from 'components/SectionOverview.vue'
+
 export default {
   data () {
     return {
-      msg: 'Stage Display Goes Here'
+
     }
+  },
+  components: {
+    SectionOverview
+  },
+  methods: {
+
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-@import "../styles/_variables.scss";
+@import "../styles/base/_variables.scss";
 
-h1, h2 {
-  font-weight: normal;
-  color: $pal-red;
-}
-
-.hello {
-  font-weight: bold;
-
-  &_h2 {
-    font-weight: 100;
-  }
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
 </style>

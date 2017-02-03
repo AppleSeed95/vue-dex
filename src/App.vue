@@ -70,20 +70,18 @@ export default {
 
 <style lang="scss">
 
-@import "./styles/_variables.scss";
+@import "./styles/base/_all.scss";
 @import "~bulma/bulma.sass";
-@import "./styles/components/_header.scss";
+@import "./styles/components/_all.scss";
 
 html {
   font-size: 16px;
 }
 
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+body {
+  font-family: 'AvenirRoman', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  background-color: $pal-white;
 }
 </style>
