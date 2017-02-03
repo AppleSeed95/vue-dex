@@ -4,6 +4,7 @@
   background: $pal-white;
   color: $pal-black;
   padding: 40px;
+  margin: 0 20px;
   margin-top: 60px;
 
   &_tag {
@@ -13,7 +14,7 @@
     right: 0;
     top: -26px;
     border-radius: 10px 10px 0 0;
-    min-width: 120px;
+    min-width: 140px;
     height: 26px;
     padding-top: 7px;
     @include text-label;
@@ -90,13 +91,14 @@
       background-color: $pal-turquoise;
       background-repeat: no-repeat;
       background-position: 50%;
+      z-index: 1;
 
       &-4 {
-        background-image: url("~/assets/supportLim-4.png");
+        background-image: url("/static/img/supportLim-4.png");
       }
 
       &-3 {
-        background-image: url("~/assets/supportLim-4.png");
+        background-image: url("/static/img/supportLim-3.png");
       }
     }
   }

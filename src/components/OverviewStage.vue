@@ -1,5 +1,5 @@
 <template>
-  <div class="card column card-overview card-overviewStage is-two-thirds">
+  <div class="column card card-overview card-overviewStage is-7">
     <h2>Stage 123</h2>
     <div class="stage_supportLimit stage_supportLimit-4">
 

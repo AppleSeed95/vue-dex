@@ -4,6 +4,7 @@
       <h1 class="section_title">Overview</h1>
       <div class="columns">
         <overview-stage></overview-stage>
+        <overview-pokemon></overview-pokemon>
       </div>
     </div>
   </section>
@@ -11,6 +12,7 @@
 
 <script>
 import OverviewStage from 'components/OverviewStage.vue'
+import OverviewPokemon from 'components/OverviewPokemon.vue'
 
 export default {
   data () {
@@ -19,7 +21,8 @@ export default {
     }
   },
   components: {
-    OverviewStage
+    OverviewStage,
+    OverviewPokemon
   }
 }
 </script>

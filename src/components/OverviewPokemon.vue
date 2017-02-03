@@ -1,10 +1,10 @@
 <template>
-  <div class="card card-overview card-overviewPokemon">
+  <div class="column card card-overview card-overviewPokemon is-4">
     <div class="stage_pokemonThumbnail">
 
     </div>
     <div class="card_tag">
-
+      Pokemon Info
     </div>
     <div class="columns">
       <div class="column">
