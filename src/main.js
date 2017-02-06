@@ -12,6 +12,10 @@ import SectionOverview from 'components/SectionOverview.vue'
 import OverviewStage from 'components/OverviewStage.vue'
 import OverviewPokemon from 'components/OverviewPokemon.vue'
 
+// DISRUPTIONS SECTION //
+import SectionDisruptions from 'components/SectionDisruptions.vue'
+import DisruptionsCard from 'components/DisruptionsCard.vue'
+
 Vue.use(VueRouter)
 /* eslint-disable no-new */
 
