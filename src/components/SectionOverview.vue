@@ -1,5 +1,5 @@
 <template>
-  <section class="section">
+  <section class="section section-overview">
     <div class="container">
       <h1 class="section_title">Overview</h1>
       <div class="columns">

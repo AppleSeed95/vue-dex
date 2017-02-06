@@ -1,11 +1,13 @@
 <template>
   <div class="stage">
     <section-overview></section-overview>
+    <section-disruptions></section-disruptions>
   </div>
 </template>
 
 <script>
 import SectionOverview from 'components/SectionOverview.vue'
+import SectionDisruptions from 'components/SectionDisruptions.vue'
 
 export default {
   data () {
@@ -14,7 +16,8 @@ export default {
     }
   },
   components: {
-    SectionOverview
+    SectionOverview,
+    SectionDisruptions
   },
   methods: {
 
