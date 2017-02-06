@@ -3,5 +3,40 @@
     @include title-section;
     text-align: center;
     margin-top: 20px;
+    margin-bottom: 60px;
+  }
+}
+
+.section-disruptions {
+
+  .section_ftr {
+    margin-top: 30px;
+  }
+
+  .addedSupp {
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+    box-shadow: $shadow-default;
+
+    &_header {
+      @include title-tile;
+      color: $pal-white;
+      border-radius: 15px 0 0 15px;
+      background: $pal-navy;
+      padding: 25px 40px;
+    }
+
+    &_content {
+      padding: 10px 20px;
+
+      > img {
+        display: block;
+        width: 60px;
+        height: 60px;
+        border-radius: 5px;
+        background-color: $pal-red;
+      }
+    }
   }
 }

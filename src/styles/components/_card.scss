@@ -5,7 +5,6 @@
   color: $pal-black;
   padding: 40px;
   margin: 0 20px;
-  margin-top: 60px;
 
   &_tag {
     position: absolute;
@@ -82,15 +81,16 @@
     .stage_supportLimit {
       position: absolute;
       bottom: -40px;
-      right: -40px;
-      width: 80px;
-      height: 80px;
+      left: -40px;
       border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      background-size: 100px;
       border: 5px solid $pal-white;
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
       background-color: $pal-turquoise;
       background-repeat: no-repeat;
-      background-size: 80px;
+
       background-position: 50%;
       z-index: 1;
 
@@ -100,6 +100,62 @@
 
       &-3 {
         background-image: url("./../assets/img/misc/supportLim-3.png");
+      }
+    }
+  }
+}
+
+// card styling in disruptions section
+.card-disruptions {
+  padding: 0;
+  margin: 0 10px;
+  border-radius: 10px;
+
+  .card_hdr {
+    @include title-card;
+    font-family: AvenirHeavy;
+    padding: 30px 0;
+    text-align: center;
+    background: $pal-navy;
+    color: $pal-white;
+    border-radius: 10px 10px 0 0;
+  }
+
+  .card_body {
+    padding: 20px;
+  }
+
+  .disruptions {
+
+    > li {
+      margin: 20px 0 10px 0;
+      padding-bottom: 10px;
+      border-bottom: 5px solid $pal-turquoise;
+
+      &:first-of-type {
+        margin-top: 0;
+      }
+
+      &:last-of-type {
+        border-bottom: none;
+      }
+    }
+
+    ul {
+      padding-left: 30px;
+
+      > li {
+        margin: 10px 0 5px 0;
+        padding-bottom: 5px;
+        border-bottom: 2px solid $pal-turquoise;
+
+        &:first-of-type {
+          margin-top: 0;
+        }
+
+        &:last-of-type {
+          border-bottom: none;
+        }
       }
     }
   }
