@@ -16,6 +16,13 @@ import OverviewPokemon from 'components/OverviewPokemon.vue'
 import SectionDisruptions from 'components/SectionDisruptions.vue'
 import DisruptionsCard from 'components/DisruptionsCard.vue'
 
+// STRATEGY SECTION //
+import SectionStrategy from 'components/SectionStrategy.vue'
+import StrategyCard from 'components/StrategyCard.vue'
+
+// SUPPORTS SECTION //
+import SectionSupports from 'components/SectionSupports.vue'
+
 Vue.use(VueRouter)
 /* eslint-disable no-new */
 

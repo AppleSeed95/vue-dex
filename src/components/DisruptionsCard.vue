@@ -1,5 +1,5 @@
 <template>
-  <div class="column card card-disruptions card-disruptionsBoard">
+  <div class="column card card-disruptions card-disruptions-board">
     <div class="card_hdr">{{ this.disruptionTitle }}</div>
     <div class="container card_body">
       <ul class="disruptions">
