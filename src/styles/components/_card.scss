@@ -90,15 +90,16 @@
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
       background-color: $pal-turquoise;
       background-repeat: no-repeat;
+      background-size: 80px;
       background-position: 50%;
       z-index: 1;
 
       &-4 {
-        background-image: url("/static/img/supportLim-4.png");
+        background-image: url("./../assets/img/misc/supportLim-4.png");
       }
 
       &-3 {
-        background-image: url("/static/img/supportLim-3.png");
+        background-image: url("./../assets/img/misc/supportLim-3.png");
       }
     }
   }
