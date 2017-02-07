@@ -165,3 +165,24 @@
 .card-strategy {
 
 }
+
+// card styling in support section
+.card-supports {
+  min-height: 100px;
+
+  &-mega {
+    .card_hdr {
+      background: $pal-red;
+    }
+  }
+
+  .supports {
+
+    > li {
+
+      img {
+        @extend %pokemon-slot;
+      }
+    }
+  }
+}

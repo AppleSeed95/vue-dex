@@ -9,3 +9,11 @@ $pal-turquoise: #99E1D9;
 $font_path: '~assets/fonts/';
 
 $shadow-default: 0 3px 6px rgba(0, 0, 0, 0.16);
+
+%pokemon-slot {
+  display: block;
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+  background-color: $pal-red;
+}

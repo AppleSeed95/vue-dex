@@ -1,0 +1,66 @@
+.party {
+  box-shadow: $shadow-default;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  height: 85px;
+  padding: 0;
+  margin-right: 40px;
+
+  &_hdr {
+    @include title-tile;
+    @include font-size(20px/14);
+    color: $pal-white;
+    background: $pal-navy;
+    padding: 30px 10px;
+    border-radius: 15px 0 0 15px;
+  }
+
+  &_content {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &_slot {
+    margin: 0 5px;
+    position: relative;
+
+    > img {
+      @extend %pokemon-slot;
+    }
+
+    &:after {
+      width: 30px;
+      height: 30px;
+      content: '';
+      border-radius: 50%;
+      border: 2px solid $pal-white;
+      box-shadow: $shadow-default;
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-15px);
+      display: none;
+    }
+
+    &-isSwapped {
+      background-image: url('./../assets/img/misc/skill_swapper.png');
+      display: block;
+    }
+
+    &-isRML {
+      background-image: url('./../assets/img/misc/rml.png');
+      display: block;
+    }
+  }
+}
+
+.party {
+  &-optimal {
+    .party_hdr {
+      background: $pal-red;
+    }
+  }
+}
