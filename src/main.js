@@ -22,6 +22,8 @@ import StrategyCard from 'components/StrategyCard.vue'
 
 // SUPPORTS SECTION //
 import SectionSupports from 'components/SectionSupports.vue'
+import SupportsCard from 'components/SupportsCard.vue'
+import SupportsParty from 'components/SupportsParty.vue'
 
 Vue.use(VueRouter)
 /* eslint-disable no-new */
