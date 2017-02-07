@@ -3,6 +3,7 @@
     <section-overview></section-overview>
     <section-disruptions></section-disruptions>
     <section-strategy></section-strategy>
+    <section-supports></section-supports>
   </div>
 </template>
 
@@ -10,6 +11,7 @@
 import SectionOverview from 'components/SectionOverview.vue'
 import SectionDisruptions from 'components/SectionDisruptions.vue'
 import SectionStrategy from 'components/SectionStrategy.vue'
+import SectionSupports from 'components/SectionSupports.vue'
 
 export default {
   data () {
@@ -20,7 +22,8 @@ export default {
   components: {
     SectionOverview,
     SectionDisruptions,
-    SectionStrategy
+    SectionStrategy,
+    SectionSupports
   },
   methods: {
 
