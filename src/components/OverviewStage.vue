@@ -34,7 +34,7 @@
         </div>
       </div>
       <div class="column stage_visuals">
-        <img src="http://i.imgur.com/xCN7l0K.png" alt="stage view" class="stage_view">
+        <img :src="stageLayout" alt="stage view" class="stage_view">
       </div>
     </div>
   </div>
@@ -44,7 +44,7 @@
 export default {
   data () {
     return {
-      stageLayout: 'http://i.imgur.com/xCN7l0K.png'
+      stageLayout: 'http://i.imgur.com/YMR571b.png'
     }
   },
   methods: {

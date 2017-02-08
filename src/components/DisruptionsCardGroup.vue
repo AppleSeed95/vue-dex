@@ -1,7 +1,7 @@
 <template>
   <div class="column card card-disruptions card-disruptions-group">
     <div class="card_hdr">Disruptions</div>
-    <div class="columns inactiveModes is-mobile">
+    <div class="columns card_tabs is-mobile">
       <div v-for="mode, index in disruptionModes" :class="['column is-gapless', isCurrentMode(mode)]" @click="switchMode(index)">{{ mode }}</div>
     </div>
     <div class="container card_body" v-if="currentMode == 'Board'">
@@ -68,11 +68,6 @@ export default {
   computed: {
     currentMode (mode) {
       return this.disruptionModes[this.disruptionModeActive]
-    },
-    inactiveModes() {
-      return _.filter(this.disruptionModes, (mode) => {
-        return mode != this.currentMode
-      })
     }
   },
   methods: {

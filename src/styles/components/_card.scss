@@ -40,6 +40,22 @@
     padding: 20px;
   }
 
+  &_tabs {
+    margin: 0;
+    text-align: center;
+
+    > div {
+      border-bottom: 2px solid $pal-red;
+      transition: all 0.25s ease;
+      @include text-label;
+
+      &.is-active {
+        background: $pal-red;
+        color: $pal-white;
+      }
+    }
+  }
+
   @include mobile() {
     margin-bottom: 40px;
   }
@@ -221,24 +237,6 @@
 
         &:last-of-type {
           border-bottom: none;
-        }
-      }
-    }
-  }
-
-  &-group {
-    .inactiveModes {
-      margin: 0;
-      text-align: center;
-
-      > div {
-        border-bottom: 2px solid $pal-red;
-        transition: all 0.25s ease;
-        @include text-label;
-
-        &.is-active {
-          background: $pal-red;
-          color: $pal-white;
         }
       }
     }

@@ -6,6 +6,10 @@
     margin-top: 20px;
     margin-bottom: 60px;
   }
+
+  @include mobile() {
+    padding-bottom: 10px;
+  }
 }
 
 .section-disruptions {
