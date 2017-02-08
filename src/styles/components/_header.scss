@@ -1,6 +1,6 @@
 .nav {
   &-main {
-    background-color: $pal-red;
+    background-color: $pal-navy;
     height: 80px;
 
     a {
@@ -10,8 +10,32 @@
   }
 
   &-stages {
-    height: 60px;
+    @include text-label;
+    min-height: 60px;
     border-bottom: 3px solid $pal-gray;
+
+    .level-left {
+      margin-left: 40px;
+    }
+
+    .level-right {
+      margin-right: 40px;
+    }
+
+    @include mobile() {
+      display: flex;
+      align-items: center;
+
+      .level-left {
+        margin: 0;
+        margin-left: 20px;
+      }
+
+      .level-right {
+        margin: 0;
+        margin-right: 20px;
+      }
+    }
   }
 }
 
@@ -28,14 +52,14 @@
     visibility: hidden;
 
     &:checked + label::after {
-      margin-left: 55px;
+      margin-left: 66px;
     }
   }
 
   > label {
     order: 2;
     display: block;
-    width: 90px;
+    width: 100px;
     height: 32px;
     background-color: $pal-red;
     border-radius: 50px;
@@ -78,6 +102,7 @@
 
     input[type=checkbox]:checked ~ .modeIndicator-expert {
       visibility: visible;
+      right: 45px;
     }
   }
 
@@ -94,17 +119,17 @@
       position: absolute;
       font-size: 0.85rem;
       right: 6px;
-      top: 50%;
+      top: calc(50% + 1px);
       transform: translateY(-50%);
       z-index: 1;
 
       &-main {
-        visibility: hidden;
-        right: 24px;
+        visibility: visible;
+        right: 30px;
       }
 
       &-expert {
-        visibility: visible;
+        visibility: hidden;
       }
     }
 	}

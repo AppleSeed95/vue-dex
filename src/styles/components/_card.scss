@@ -21,15 +21,23 @@
   &_hdr {
     @include title-card;
     font-family: AvenirHeavy;
-    padding: 30px 0;
+    padding: 30px 10px;
     text-align: center;
     background: $pal-navy;
     color: $pal-white;
     border-radius: 10px 10px 0 0;
+
+    @include mobile() {
+      @include font-size(20px/14);
+    }
   }
 
   &_body {
     padding: 20px;
+  }
+
+  @include mobile() {
+    margin-bottom: 40px;
   }
 }
 
@@ -39,7 +47,6 @@
   background: $pal-white;
   color: $pal-black;
   padding: 40px;
-  margin: 0 20px;
   border-radius: 0 0 30px 0;
 
   h2 {
@@ -67,7 +74,6 @@
 
     > strong {
       display: inline-block;
-      width: 120px;
       text-align: left;
     }
 
@@ -83,15 +89,33 @@
     }
   }
 
-  &Stage {
+  &-stage {
+    .glance-layout {
+      display: none;
+
+      @include mobile() {
+        display: block;
+        text-align: center;
+        > strong {
+          color: $pal-red;
+        }
+      }
+    }
+
     .stage_visuals {
       display: flex;
       align-items: center;
 
       > img {
         width: 100%;
+        height: auto;
         display: block;
         margin: 0 auto;
+        max-width: 200px;
+      }
+
+      @include mobile() {
+        display: none;
       }
     }
 
@@ -117,6 +141,21 @@
 
       &-3 {
         background-image: url("./../assets/img/misc/supportLim-3.png");
+      }
+
+      @include mobile() {
+        top: -40px;
+        left: -10px;
+      }
+    }
+
+    @include tablet-only() {
+      > .columns {
+        display: block;
+
+        .is-7 {
+          width: 100%;
+        }
       }
     }
   }

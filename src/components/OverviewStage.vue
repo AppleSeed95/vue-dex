@@ -1,5 +1,12 @@
 <template>
-  <div class="column card card-overview card-overviewStage is-7">
+  <div class="column card card-overview card-overview-stage is-6">
+    <div class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <img src="http://i.imgur.com/xCN7l0K.png" alt="stage view" class="stage_view">
+      </div>
+      <button class="modal-close"></button>
+    </div>
     <h2>Stage 123</h2>
     <div class="stage_supportLimit stage_supportLimit-4">
 
@@ -8,7 +15,7 @@
       Stage Info
     </div>
     <div class="columns">
-      <div class="column is-two-thirds">
+      <div class="column is-7">
         <div class="glances">
           <div class="glance glance-hp">
             <strong>Hit Points</strong>
@@ -21,6 +28,9 @@
           <div class="glance glance-sranks">
             <strong>S-Ranks</strong>
             <span>7/15</span>
+          </div>
+          <div class="glance glance-layout">
+            <strong>Click for starting board</strong>
           </div>
         </div>
       </div>

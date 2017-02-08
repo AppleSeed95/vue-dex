@@ -1,28 +1,32 @@
 <template>
     <div>
         <div class="container is-fluid" :style="{margin: '0'}">
-          <nav class="level nav-main">
-              <div class="level-left" :style="{marginLeft: '40px'}">
-                  <router-link to="home">Pokemon Shuffle Guide</router-link>
+          <nav class="nav nav-main">
+              <!--
+              <div class="nav-left">
+                  <router-link class="nav-item" to="home">Pokemon Shuffle Guide</router-link>
               </div>
-              <div class="level-right" :style="{marginRight: '40px'}">
-                <router-link to="home">About</router-link>
+              -->
+              <div class="nav-right">
+                <router-link class="nav-item" to="home">About</router-link>
               </div>
           </nav>
         </div>
         <div class="container is-fluid" :style="{margin: '0'}">
           <nav class="level nav-stages">
-            <div class="level-left" :style="{marginLeft: '40px'}">
+            <div class="level-left">
               <form>Stage
-                <span><input class="stagesSelector" type="text" id="stageId" placeholder="1"></span>
+                <span>
+                  <input v-model="stageId" class="stagesSelector" type="text" placeholder="1" @keyup.enter="submit">
+                </span>
               </form>
             </div>
-            <div class="level-right" :style="{marginRight: '40px'}">
+            <div class="level-right">
               <div class="mode">
-                <input type="checkbox" id="switch-toggle">
+                <input type="checkbox" id="switch-toggle" value="mode">
                 <label for="switch-toggle"></label>
-                <h2 class="modeIndicator-main">Main</h2>
-                <h2 class="modeIndicator-expert">Expert</h2>
+                <h2 class="modeIndicator modeIndicator-main">Main</h2>
+                <h2 class="modeIndicator modeIndicator-expert">Expert</h2>
               </div>
             </div>
           </nav>
@@ -54,15 +58,23 @@ import _ from 'lodash'
 
 import { router } from './main'
 import Stage from 'components/Stage.vue'
+import * as Resources from './resources'
 
 export default {
     data () {
-      return {}
+      return {
+        stageId: 0
+      }
     },
     components: {
       Stage
     },
     methods: {
+      submit () {
+        console.log(this.stageId)
+      }
+    },
+    mounted () {
 
     }
 }
@@ -84,4 +96,34 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: $pal-white;
 }
+
+.nav {
+  .nav-item {
+    padding: 0;
+
+    &:hover {
+      color: $pal-red;
+    }
+  }
+}
+
+.nav-right {
+  margin-right: 40px;
+}
+
+@include mobile() {
+  .nav-right {
+    margin-right: 20px;
+  }
+
+  .nav-right {
+    align-self: center;
+
+    .nav-item {
+      justify-content: flex-end;
+    }
+  }
+}
+
+
 </style>

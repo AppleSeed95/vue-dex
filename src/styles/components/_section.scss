@@ -41,7 +41,18 @@
 .section-supports {
   h2 {
     text-align: left;
-    margin-bottom: 40px;
-    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+  }
+
+  .parties {
+    padding-left: 10px;
+  }
+
+  .supports {
+    li {
+      padding: 0;
+      margin: 5px;
+    }
   }
 }
