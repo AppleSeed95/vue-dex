@@ -2,8 +2,8 @@
   <div :class="['column', 'card card-supports', slotIsMega ? 'card-supports-mega' : '']">
     <div class="card_hdr">{{ this.supportsTitle }}</div>
     <div class="container card_body">
-      <ul class="supports columns is-multiline">
-        <li v-for="index in [1, 2, 3, 4, 5]" class="column is-narrow is-mobile">
+      <ul class="supports columns is-multiline is-mobile">
+        <li v-for="index in [1, 2, 3, 4, 5]" class="column is-narrow">
           <img src="./../assets/img/sprites/icon_01.png" alt="slot">
         </li>
       </ul>
