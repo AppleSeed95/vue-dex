@@ -225,6 +225,24 @@
       }
     }
   }
+
+  &-group {
+    .inactiveModes {
+      margin: 0;
+      text-align: center;
+
+      > div {
+        border-bottom: 2px solid $pal-red;
+        transition: all 0.25s ease;
+        @include text-label;
+
+        &.is-active {
+          background: $pal-red;
+          color: $pal-white;
+        }
+      }
+    }
+  }
 }
 
 // card styling in strategy section

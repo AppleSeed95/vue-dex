@@ -3,10 +3,11 @@
     <div class="container">
       <h1 class="section_title">Disruptions</h1>
       <div class="columns section_wrapper">
-        <disruptions-card disruption-title="Board"></disruptions-card>
-        <disruptions-card disruption-title="Initial"></disruptions-card>
-        <disruptions-card disruption-title="Timer"></disruptions-card>
-        <disruptions-card disruption-title="Conditional"></disruptions-card>
+        <disruptions-card disruption-title="Board" class="is-hidden-touch"></disruptions-card>
+        <disruptions-card disruption-title="Initial" class="is-hidden-touch"></disruptions-card>
+        <disruptions-card disruption-title="Timer" class="is-hidden-touch"></disruptions-card>
+        <disruptions-card disruption-title="Conditional" class="is-hidden-touch"></disruptions-card>
+        <disruptions-card-group class="is-hidden-desktop"></disruptions-card-group>
       </div>
       <div class="section_ftr addedSupp">
         <div class="addedSupp_header">Added Support</div>
@@ -20,6 +21,7 @@
 
 <script>
 import DisruptionsCard from 'components/DisruptionsCard.vue'
+import DisruptionsCardGroup from 'components/DisruptionsCardGroup.vue'
 
 export default {
   data () {
@@ -28,7 +30,8 @@ export default {
     }
   },
   components: {
-    DisruptionsCard
+    DisruptionsCard,
+    DisruptionsCardGroup
   }
 }
 </script>

@@ -12,7 +12,7 @@
     <div class="card_tag">
       Stage Info
     </div>
-    <div class="card_tag card_tag-switch is-hidden-tablet" @click="switchView">Switch To Pokemon Info</div>
+    <div class="card_tag card_tag-switch is-hidden-desktop" @click="switchView">Switch To Pokemon Info</div>
     <div class="columns">
       <div class="column is-7">
         <div class="glances">
