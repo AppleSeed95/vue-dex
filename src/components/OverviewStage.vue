@@ -3,7 +3,7 @@
     <div class="modal">
       <div class="modal-background"></div>
       <div class="modal-content">
-        <img src="http://i.imgur.com/xCN7l0K.png" alt="stage view" class="stage_view">
+        <img :src="stageLayout" alt="stage view" class="stage_view">
       </div>
       <button class="modal-close"></button>
     </div>
@@ -12,6 +12,7 @@
     <div class="card_tag">
       Stage Info
     </div>
+    <div class="card_tag card_tag-switch is-hidden-tablet" @click="switchView">Switch To Pokemon Info</div>
     <div class="columns">
       <div class="column is-7">
         <div class="glances">
@@ -43,7 +44,12 @@
 export default {
   data () {
     return {
-
+      stageLayout: 'http://i.imgur.com/xCN7l0K.png'
+    }
+  },
+  methods: {
+    switchView() {
+      this.$emit('switch-overview')
     }
   }
 }

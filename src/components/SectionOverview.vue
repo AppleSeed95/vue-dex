@@ -3,8 +3,8 @@
     <div class="container">
       <h1 class="section_title">Overview</h1>
       <div class="columns">
-        <overview-stage></overview-stage>
-        <overview-pokemon></overview-pokemon>
+        <overview-stage v-if="showStage" @switch-overview="switchView"></overview-stage>
+        <overview-pokemon v-if="showPokemon" @switch-overview="switchView"></overview-pokemon>
       </div>
     </div>
   </section>
@@ -17,15 +17,54 @@ import OverviewPokemon from 'components/OverviewPokemon.vue'
 export default {
   data () {
     return {
-
+      viewIsPokemon: false,
+      screenMode: ''
     }
   },
   methods: {
-
+    switchView() {
+      this.viewIsPokemon = !this.viewIsPokemon
+    },
+    calculateScreensize(event) {
+      let width = document.documentElement.clientWidth
+      if (width <= 768) {
+        this.screenMode = 'tablet'
+      } else {
+        this.screenMode = 'desktop'
+      }
+    }
+  },
+  computed: {
+    showStage () {
+      if (this.screenMode == 'desktop') {
+        return true
+      } else {
+        if (!this.viewIsPokemon) {
+          return true
+        }
+        return false
+      }
+    },
+    showPokemon () {
+      if (this.screenMode == 'desktop') {
+        return true
+      } else {
+        if (this.viewIsPokemon) {
+          return true
+        }
+        return false
+      }
+    }
   },
   components: {
     OverviewStage,
     OverviewPokemon
+  },
+  mounted () {
+    this.$nextTick(() => {
+      window.addEventListener('resize', this.calculateScreensize);
+      this.calculateScreensize()
+    })
   }
 }
 </script>

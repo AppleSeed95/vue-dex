@@ -13,9 +13,13 @@
     border-radius: 10px 10px 0 0;
     min-width: 140px;
     height: 26px;
-    padding-top: 7px;
+    padding: 7px 10px 0 10px;
     @include text-label;
     text-align: center;
+
+    &-switch {
+      cursor: pointer;
+    }
   }
 
   &_hdr {
@@ -163,6 +167,7 @@
   }
 
   &-pokemon {
+    margin-left: 20px;
 
     h2 {
       margin-right: 30px;

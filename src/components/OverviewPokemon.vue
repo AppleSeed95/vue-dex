@@ -3,6 +3,7 @@
     <div class="card_tag">
       Pokemon Info
     </div>
+    <div class="card_tag card_tag-switch is-hidden-tablet" @click="switchView">Switch To Stage Info</div>
     <div class="columns">
       <div class="column">
         <h2>Bulbasaur
@@ -40,6 +41,11 @@ export default {
   data () {
     return {
       thumbnailId: 50
+    }
+  },
+  methods: {
+    switchView() {
+      this.$emit('switch-overview')
     }
   },
   computed: {
