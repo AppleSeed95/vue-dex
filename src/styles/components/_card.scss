@@ -247,3 +247,60 @@
     }
   }
 }
+
+// card styling in team section
+.card-party {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), inset 0 5px $pal-navy;
+  background: $pal-white;
+  color: $pal-black;
+  padding: 10px;
+  border-radius: 0 0 30px 0;
+  text-align: center;
+
+  &_content {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+  }
+
+  &_slot {
+    margin: 0 5px;
+    position: relative;
+
+    > img {
+      @extend %pokemon-slot;
+    }
+
+    &:after {
+      width: 30px;
+      height: 30px;
+      content: '';
+      border-radius: 50%;
+      border: 2px solid $pal-white;
+      box-shadow: $shadow-default;
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-15px);
+      display: none;
+    }
+
+    &-isSwapped {
+      background-image: url('./../assets/img/misc/skill_swapper.png');
+      display: block;
+    }
+
+    &-isRML {
+      background-image: url('./../assets/img/misc/rml.png');
+      display: block;
+    }
+  }
+
+  &.party-optimal {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), inset 0 5px $pal-red;
+
+    .card_tag {
+      background: $pal-red;
+    }
+  }
+}

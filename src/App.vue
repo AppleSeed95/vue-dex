@@ -35,7 +35,6 @@
             <!-- STAGE COMPONENT -->
             <stage></stage>
         </div>
-        <hr>
         <footer class="footer" :style="{padding: '3rem 1.5rem'}">
           <div class="container">
             <div class="content has-text-centered">

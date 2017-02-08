@@ -1,11 +1,10 @@
 .party {
-  box-shadow: $shadow-default;
-  border-radius: 15px;
-  display: flex;
-  align-items: center;
-  height: 85px;
-  padding: 0;
-  margin-right: 40px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), inset 0 5px $pal-navy;
+  background: $pal-white;
+  color: $pal-black;
+  padding: 40px;
+  border-radius: 0 0 30px 0;
+  text-align: center;
 
   &_hdr {
     @include title-tile;
@@ -62,5 +61,9 @@
     .party_hdr {
       background: $pal-red;
     }
+  }
+
+  @include mobile() {
+    margin-bottom: 40px;
   }
 }
