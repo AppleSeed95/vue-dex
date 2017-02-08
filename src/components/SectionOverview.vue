@@ -20,6 +20,9 @@ export default {
 
     }
   },
+  methods: {
+
+  },
   components: {
     OverviewStage,
     OverviewPokemon

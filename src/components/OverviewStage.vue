@@ -8,9 +8,7 @@
       <button class="modal-close"></button>
     </div>
     <h2>Stage 123</h2>
-    <div class="stage_supportLimit stage_supportLimit-4">
-
-    </div>
+    <div class="stage_supportLimit stage_supportLimit-4"></div>
     <div class="card_tag">
       Stage Info
     </div>

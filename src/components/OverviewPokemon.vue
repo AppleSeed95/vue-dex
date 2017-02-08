@@ -1,14 +1,13 @@
 <template>
   <div class="column card card-overview card-overview-pokemon is-5">
-    <div class="stage_pokemonThumbnail">
-
-    </div>
     <div class="card_tag">
       Pokemon Info
     </div>
     <div class="columns">
       <div class="column">
-        <h2>Bulbasaur</h2>
+        <h2>Bulbasaur
+          <div class="stage_pokemonThumbnail" :style="{backgroundImage: pokemonThumbnail}"></div>
+        </h2>
         <div class="glances">
           <div class="glance glance-type">
             <strong class="is-pulled-left">Type</strong>
@@ -40,8 +39,16 @@
 export default {
   data () {
     return {
-
+      thumbnailId: 50
     }
+  },
+  computed: {
+    pokemonThumbnail () {
+      return `url('./static/img/sprites/icon_${this.thumbnailId}.png')`
+    }
+  },
+  mounted () {
+    console.log(this.pokemonThumbnail);
   }
 }
 </script>
@@ -51,5 +58,9 @@ export default {
 @import "../styles/base/_all.scss";
 @import "~bulma/bulma.sass";
 @import "../styles/components/_card.scss";
+
+.column {
+  text-align: center;
+}
 
 </style>

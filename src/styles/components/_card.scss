@@ -48,11 +48,13 @@
   color: $pal-black;
   padding: 40px;
   border-radius: 0 0 30px 0;
+  text-align: center;
 
   h2 {
     @include title-card;
-    text-align: center;
     margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
   }
 
   .glance {
@@ -157,6 +159,26 @@
           width: 100%;
         }
       }
+    }
+  }
+
+  &-pokemon {
+
+    h2 {
+      margin-right: 30px;
+    }
+
+    .stage_pokemonThumbnail {
+      display: block;
+      width: 60px;
+      height: 60px;
+      background-size: 60px;
+      border-radius: 50%;
+      background-color: transparent;
+      position: absolute;
+      right: -65px;
+      top: 50%;
+      transform: translateY(-50%);
     }
   }
 }
