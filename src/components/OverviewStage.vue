@@ -7,7 +7,7 @@
       </div>
       <button class="modal-close"></button>
     </div>
-    <h2>Stage 123</h2>
+    <h2>Stage {{ stageNumber }}</h2>
     <div class="stage_supportLimit stage_supportLimit-4"></div>
     <div class="card_tag">
       Stage Info
@@ -18,15 +18,15 @@
         <div class="glances">
           <div class="glance glance-hp">
             <strong>Hit Points</strong>
-            <span>4018</span>
+            <span>{{ stageHP }}</span>
           </div>
           <div class="glance glance-moves">
             <strong>Moves</strong>
-            <span>7</span>
+            <span>{{ stageMoves }}</span>
           </div>
           <div class="glance glance-sranks">
             <strong>S-Ranks</strong>
-            <span>7/15</span>
+            <span>{{ `${stageSRank} / ${stageMoves}` }}</span>
           </div>
           <div class="glance glance-layout">
             <strong>Click for starting board</strong>
@@ -41,16 +41,55 @@
 </template>
 
 <script>
+import _ from 'lodash'
+import * as api from './../api'
+import * as Resources from './../resources'
+
+import bus from './../bus'
+
 export default {
   data () {
     return {
-      stageLayout: 'http://i.imgur.com/YMR571b.png'
+      stageLayout: 'http://i.imgur.com/YMR571b.png',
+      stageHP: '',
+      stageMoves: '?',
+      stageSRank: '?',
+      stageSupportLim: '',
     }
+  },
+  props: ['stageIdStage'],
+  watch: {
+    stageNumber (newId) {
+      this.getStageHP()
+    }
+  },
+  computed: {
+    stageNumber () {
+      return this.stageIdStage
+    },
   },
   methods: {
     switchView() {
       this.$emit('switch-overview')
-    }
+    },
+    getStageHP: _.debounce(
+      () => {
+        let self = this
+        let stageUrl = Resources.getStageUrl(self.stageNumber)
+        api.get(stageUrl)
+          .then(resp => {
+            console.log('api get ', resp);
+            let stage = _.find(resp.body, (stageObj) => {
+              return stageObj.stageNo == self.stageNumber
+            })
+            console.log(stage.hitPts)
+            self.stageHP = stage.hitPts
+          })
+      }, 500
+    )
+  },
+  mounted () {
+    // bus.$on('update', this.updateStageHP)
   }
 }
 </script>

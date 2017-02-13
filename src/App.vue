@@ -17,7 +17,7 @@
             <div class="level-left">
               <form>Stage
                 <span>
-                  <input v-model="stageId" class="stagesSelector" type="text" placeholder="1" @keyup.enter="submit">
+                  <input v-model="stageIdApp" class="stagesSelector" type="text" placeholder="1" @keyup.enter.prevent="submit">
                 </span>
               </form>
             </div>
@@ -33,7 +33,7 @@
         </div>
         <div class="container">
             <!-- STAGE COMPONENT -->
-            <stage></stage>
+            <stage :stageIdApp="this.stageIdApp"></stage>
         </div>
         <footer class="footer" :style="{padding: '3rem 1.5rem'}">
           <div class="container">
@@ -58,11 +58,12 @@ import _ from 'lodash'
 import { router } from './main'
 import Stage from 'components/Stage.vue'
 import * as Resources from './resources'
+import bus from './bus.js'
 
 export default {
     data () {
       return {
-        stageId: 0
+        stageIdApp: 0
       }
     },
     components: {
@@ -70,7 +71,8 @@ export default {
     },
     methods: {
       submit () {
-        console.log(this.stageId)
+        bus.$emit('update')
+        console.log(this)
       }
     },
     mounted () {

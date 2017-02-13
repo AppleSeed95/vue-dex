@@ -3,7 +3,7 @@
     <div class="container">
       <h1 class="section_title">Overview</h1>
       <div class="columns">
-        <overview-stage v-if="showStage" @switch-overview="switchView"></overview-stage>
+        <overview-stage v-if="showStage" @switch-overview="switchView" :stageUrlStage="stageUrl" :stageIdStage="stageId"></overview-stage>
         <overview-pokemon v-if="showPokemon" @switch-overview="switchView"></overview-pokemon>
       </div>
     </div>
@@ -13,14 +13,19 @@
 <script>
 import OverviewStage from 'components/OverviewStage.vue'
 import OverviewPokemon from 'components/OverviewPokemon.vue'
+import * as Resources from './../resources'
+
+import bus from './../bus'
 
 export default {
   data () {
     return {
       viewIsPokemon: false,
-      screenMode: ''
+      screenMode: '',
+      stageUrl: '',
     }
   },
+  props: ['stageId'],
   methods: {
     switchView() {
       this.viewIsPokemon = !this.viewIsPokemon
@@ -32,6 +37,10 @@ export default {
       } else {
         this.screenMode = 'desktop'
       }
+    },
+    updateOverview() {
+      this.stageUrl = Resources.getStageUrl(this.stageId)
+      console.log('section overview current stage url ', this.stageUrl)
     }
   },
   computed: {
@@ -64,6 +73,8 @@ export default {
     this.$nextTick(() => {
       window.addEventListener('resize', this.calculateScreensize);
       this.calculateScreensize()
+
+      bus.$on('update', this.updateOverview)
     })
   }
 }

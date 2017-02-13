@@ -1,9 +1,9 @@
 <template>
   <div class="stage">
-    <section-overview></section-overview>
-    <section-disruptions></section-disruptions>
-    <section-strategy></section-strategy>
-    <section-supports></section-supports>
+    <section-overview :stageId="stageIdApp"></section-overview>
+    <section-disruptions :stageId="stageIdApp"></section-disruptions>
+    <section-strategy :stageId="stageIdApp"></section-strategy>
+    <section-supports :stageId="stageIdApp"></section-supports>
   </div>
 </template>
 
@@ -25,8 +25,12 @@ export default {
     SectionStrategy,
     SectionSupports
   },
+  props: ['stageIdApp'],
   methods: {
 
+  },
+  mounted () {
+    console.log('Stage passing ID ', this.stageIdApp);
   }
 }
 </script>

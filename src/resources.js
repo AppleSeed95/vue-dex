@@ -72,18 +72,11 @@ const stageCollections = [
 ];
 
 function getStageUrl(stageId) {
-  let results = [];
-  _.each(stageCollections, (phase) => {
-    if (stageId <= phase.levelCap) {
-      stageUrls.push('./assets/scripts/stageGuides/' + phase.stageUrl + '.json');
-    }
+  let targetPhase = _.find(stageCollections, phase => {
+    return stageId <= phase.levelCap
   })
 
-  if (stageUrls.length >= 1) {
-    return stageUrls.shift();
-  } else {
-    return "";
-  }
+  return './static/scripts/stageGuides/' + targetPhase.stageUrl + '.json'
 }
 
 export {mainStageCap, expertStageCap, pokemonCollectionUrl, expertStageUrl, getStageUrl}
