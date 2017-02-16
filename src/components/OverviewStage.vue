@@ -44,7 +44,7 @@
 import _ from 'lodash'
 import * as api from './../api'
 import * as Resources from './../resources'
-import * as processor from './../processor'
+import * as Processor from './../processor'
 
 import bus from './../bus'
 
@@ -58,7 +58,12 @@ export default {
       stageSupportLim: ''
     }
   },
-  props: ['stageIdStage', 'stageUrlStage'],
+  props: ['stageData'],
+  watch: {
+    stageData() {
+      this.updateHP()
+    }
+  },
   computed: {
     stageNumber () {
       return this.stageIdStage
@@ -67,6 +72,10 @@ export default {
   methods: {
     switchView() {
       this.$emit('switch-overview')
+    },
+    updateHP() {
+      console.log('stage HP: ', this.stageData.hitPts);
+      this.stageHP = this.stageData.hitPts
     }
   },
   mounted () {

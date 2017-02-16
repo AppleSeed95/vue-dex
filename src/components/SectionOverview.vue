@@ -3,7 +3,7 @@
     <div class="container">
       <h1 class="section_title">Overview</h1>
       <div class="columns">
-        <overview-stage v-if="showStage" @switch-overview="switchView" :stageIdStage="stageId"></overview-stage>
+        <overview-stage :stageData="stageData" v-if="showStage" @switch-overview="switchView"></overview-stage>
         <overview-pokemon v-if="showPokemon" @switch-overview="switchView"></overview-pokemon>
       </div>
     </div>
@@ -21,10 +21,13 @@ export default {
   data () {
     return {
       viewIsPokemon: false,
-      screenMode: '',
+      screenMode: ''
     }
   },
-  props: ['stageId'],
+  props: ['stageData'],
+  watch: {
+
+  },
   methods: {
     switchView() {
       this.viewIsPokemon = !this.viewIsPokemon
@@ -36,10 +39,6 @@ export default {
       } else {
         this.screenMode = 'desktop'
       }
-    },
-    updateOverview() {
-      this.stageUrl = Resources.getStageUrl(this.stageId)
-      console.log('section overview current stage url ', this.stageUrl)
     }
   },
   computed: {

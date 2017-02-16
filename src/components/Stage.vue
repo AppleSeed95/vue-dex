@@ -1,6 +1,6 @@
 <template>
   <div class="stage">
-    <section-overview :stageId="stageIdApp"></section-overview>
+    <section-overview :stageData="stageData"></section-overview>
     <section-disruptions :stageId="stageIdApp"></section-disruptions>
     <section-strategy :stageId="stageIdApp"></section-strategy>
     <section-supports :stageId="stageIdApp"></section-supports>
@@ -13,10 +13,15 @@ import SectionDisruptions from 'components/SectionDisruptions.vue'
 import SectionStrategy from 'components/SectionStrategy.vue'
 import SectionSupports from 'components/SectionSupports.vue'
 
+import _ from 'lodash'
+import * as Processor from './../processor'
+import * as Resources from './../resources'
+
 export default {
   data () {
     return {
-
+      stageUrlStage: '',
+      stageData: {}
     }
   },
   components: {
@@ -25,13 +30,33 @@ export default {
     SectionStrategy,
     SectionSupports
   },
-  props: ['stageIdApp'],
-  methods: {
-
+  watch: {
+    stageIdApp() {
+      this.getUrlFromId()
+      this.updateStageData()
+    }
   },
-  mounted () {
-    console.log('Stage passing ID ', this.stageIdApp);
-  }
+  props: ['stageIdApp', 'stageUrlApp'],
+  methods: {
+    updateStageData: _.debounce(function () {
+      let processorConfig = {
+        url: this.stageUrlStage,
+        id: this.stageIdApp
+      }
+      Processor.getStage(processorConfig).then((data) => {
+        if (data) {
+          this.stageData = data
+        } else {
+          console.log('encountered error when getting stage')
+        }
+      })
+      console.log('stage data: ', this.stageData);
+    }, 1000),
+    getUrlFromId () {
+      this.stageUrlStage = Resources.getStageUrl(1, this.stageIdApp)
+    }
+  },
+  mounted () {}
 }
 </script>
 
