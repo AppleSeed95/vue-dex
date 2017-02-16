@@ -3,7 +3,7 @@
     <div class="container">
       <h1 class="section_title">Overview</h1>
       <div class="columns">
-        <overview-stage v-if="showStage" @switch-overview="switchView" :stageUrlStage="stageUrl" :stageIdStage="stageId"></overview-stage>
+        <overview-stage v-if="showStage" @switch-overview="switchView" :stageIdStage="stageId"></overview-stage>
         <overview-pokemon v-if="showPokemon" @switch-overview="switchView"></overview-pokemon>
       </div>
     </div>
@@ -22,7 +22,6 @@ export default {
     return {
       viewIsPokemon: false,
       screenMode: '',
-      stageUrl: '',
     }
   },
   props: ['stageId'],
@@ -74,7 +73,7 @@ export default {
       window.addEventListener('resize', this.calculateScreensize);
       this.calculateScreensize()
 
-      bus.$on('update', this.updateOverview)
+      //bus.$on('update', this.updateOverview)
     })
   }
 }

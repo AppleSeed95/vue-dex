@@ -44,6 +44,7 @@
 import _ from 'lodash'
 import * as api from './../api'
 import * as Resources from './../resources'
+import * as processor from './../processor'
 
 import bus from './../bus'
 
@@ -51,42 +52,22 @@ export default {
   data () {
     return {
       stageLayout: 'http://i.imgur.com/YMR571b.png',
-      stageHP: '',
       stageMoves: '?',
       stageSRank: '?',
-      stageSupportLim: '',
+      stageHP: '?',
+      stageSupportLim: ''
     }
   },
-  props: ['stageIdStage'],
-  watch: {
-    stageNumber (newId) {
-      this.getStageHP()
-    }
-  },
+  props: ['stageIdStage', 'stageUrlStage'],
   computed: {
     stageNumber () {
       return this.stageIdStage
-    },
+    }
   },
   methods: {
     switchView() {
       this.$emit('switch-overview')
-    },
-    getStageHP: _.debounce(
-      () => {
-        let self = this
-        let stageUrl = Resources.getStageUrl(self.stageNumber)
-        api.get(stageUrl)
-          .then(resp => {
-            console.log('api get ', resp);
-            let stage = _.find(resp.body, (stageObj) => {
-              return stageObj.stageNo == self.stageNumber
-            })
-            console.log(stage.hitPts)
-            self.stageHP = stage.hitPts
-          })
-      }, 500
-    )
+    }
   },
   mounted () {
     // bus.$on('update', this.updateStageHP)
