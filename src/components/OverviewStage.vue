@@ -8,7 +8,7 @@
       <button class="modal-close"></button>
     </div>
     <h2>Stage {{ number }}</h2>
-    <div :class="['stage_supportLimit', supportLim == '4' ? 'stage_supportLimit-4' : 'stage_supportLimit-3']"></div>
+    <div :class="['stage_supportLimit', parseInt(supportLim) >= 4 ? 'stage_supportLimit-4' : 'stage_supportLimit-3']"></div>
     <div class="card_tag">
       Stage Info
     </div>
