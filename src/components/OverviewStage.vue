@@ -51,6 +51,7 @@ import bus from './../bus'
 export default {
   data () {
     return {
+      stageNumber: '?',
       stageLayout: 'http://i.imgur.com/YMR571b.png',
       stageMoves: '?',
       stageSRank: '?',
@@ -61,21 +62,33 @@ export default {
   props: ['stageData'],
   watch: {
     stageData() {
+      this.updateStageNo()
+
       this.updateHP()
-    }
-  },
-  computed: {
-    stageNumber () {
-      return this.stageIdStage
+      this.updateMoves()
+      this.updateSRanks()
+      this.updateLayout()
     }
   },
   methods: {
     switchView() {
       this.$emit('switch-overview')
     },
+    updateStageNo() {
+      this.stageNumber = this.stageData.stageNo
+    },
     updateHP() {
       console.log('stage HP: ', this.stageData.hitPts);
       this.stageHP = this.stageData.hitPts
+    },
+    updateMoves() {
+      this.stageMoves = this.stageData.moves
+    },
+    updateSRanks() {
+      this.stageSRank = this.stageData.srankMoves
+    },
+    updateLayout() {
+      this.stageLayout = this.stageData.initialBoardSetup
     }
   },
   mounted () {

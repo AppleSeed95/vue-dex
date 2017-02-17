@@ -46,6 +46,11 @@ export default {
       Processor.getStage(processorConfig).then((data) => {
         if (data) {
           this.stageData = data
+          let sranking = data.srankingStrategy
+          let srankMoves = sranking.match(/\d+/g, '')[0]
+          this.stageData.srankMoves = srankMoves
+
+          console.log(this.stageData);
         } else {
           console.log('encountered error when getting stage')
         }

@@ -17,7 +17,7 @@
       <div class="level-left">
         <form>Stage
           <span>
-                  <input v-model="stageIdApp" class="stagesSelector" type="text" placeholder="1">
+                  <input v-model="stageIdApp" class="stagesSelector" type="text" placeholder="1" @keyup.enter.prevent="">
                 </span>
         </form>
       </div>
