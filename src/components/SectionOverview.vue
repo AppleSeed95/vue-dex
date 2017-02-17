@@ -3,8 +3,8 @@
     <div class="container">
       <h1 class="section_title">Overview</h1>
       <div class="columns">
-        <overview-stage :stageData="stageData" v-if="showStage" @switch-overview="switchView"></overview-stage>
-        <overview-pokemon v-if="showPokemon" @switch-overview="switchView"></overview-pokemon>
+        <overview-stage :stageData="stageData" :class="showStage ? '' : 'is-hidden-mobile'" @switch-overview="switchView"></overview-stage>
+        <overview-pokemon :stageData="stageData" :class="showPokemon ? '' : 'is-hidden-mobile'" @switch-overview="switchView"></overview-pokemon>
       </div>
     </div>
   </section>
@@ -86,6 +86,11 @@ export default {
 
 .section {
   background: $pal-white;
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
 }
 
 </style>

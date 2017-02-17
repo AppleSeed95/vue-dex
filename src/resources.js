@@ -77,11 +77,11 @@ function getStageUrl(mode, stageId) {
   })
 
   if (mode == 1) {
-    return stageId > 0 && stageId < mainStageCap ? './static/scripts/stageGuides/' + targetPhase.stageUrl + '.json' : ''
+    return stageId > 0 && stageId <= mainStageCap ? './static/scripts/stageGuides/' + targetPhase.stageUrl + '.json' : ''
   }
 
   if (mode == 2) {
-    return stageId > 0 && stageId < expertStageCap ? './static/scripts/expertGuides/expert.json' : ''
+    return stageId > 0 && stageId <= expertStageCap ? './static/scripts/expertGuides/expert.json' : ''
   }
 }
 

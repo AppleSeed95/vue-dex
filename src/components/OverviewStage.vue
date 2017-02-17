@@ -3,12 +3,12 @@
     <div class="modal">
       <div class="modal-background"></div>
       <div class="modal-content">
-        <img :src="stageLayout" alt="stage view" class="stage_view">
+        <img :src="layout" alt="stage view" class="stage_view">
       </div>
       <button class="modal-close"></button>
     </div>
-    <h2>Stage {{ stageNumber }}</h2>
-    <div class="stage_supportLimit stage_supportLimit-4"></div>
+    <h2>Stage {{ number }}</h2>
+    <div :class="['stage_supportLimit', supportLim == '4' ? 'stage_supportLimit-4' : 'stage_supportLimit-3']"></div>
     <div class="card_tag">
       Stage Info
     </div>
@@ -18,15 +18,15 @@
         <div class="glances">
           <div class="glance glance-hp">
             <strong>Hit Points</strong>
-            <span>{{ stageHP }}</span>
+            <span>{{ hitPts }}</span>
           </div>
           <div class="glance glance-moves">
             <strong>Moves</strong>
-            <span>{{ stageMoves }}</span>
+            <span>{{ moves }}</span>
           </div>
           <div class="glance glance-sranks">
             <strong>S-Ranks</strong>
-            <span>{{ `${stageSRank} / ${stageMoves}` }}</span>
+            <span>{{ `${sRank} / ${moves}` }}</span>
           </div>
           <div class="glance glance-layout">
             <strong>Click for starting board</strong>
@@ -34,7 +34,7 @@
         </div>
       </div>
       <div class="column stage_visuals">
-        <img :src="stageLayout" alt="stage view" class="stage_view">
+        <img :src="layout" alt="stage view" class="stage_view">
       </div>
     </div>
   </div>
@@ -51,12 +51,12 @@ import bus from './../bus'
 export default {
   data () {
     return {
-      stageNumber: '?',
-      stageLayout: 'http://i.imgur.com/YMR571b.png',
-      stageMoves: '?',
-      stageSRank: '?',
-      stageHP: '?',
-      stageSupportLim: ''
+      number: '?',
+      layout: 'http://i.imgur.com/YMR571b.png',
+      moves: '?',
+      sRank: '?',
+      hitPts: '?',
+      supportLim: ''
     }
   },
   props: ['stageData'],
@@ -68,6 +68,7 @@ export default {
       this.updateMoves()
       this.updateSRanks()
       this.updateLayout()
+      this.updateSupportLim()
     }
   },
   methods: {
@@ -75,20 +76,22 @@ export default {
       this.$emit('switch-overview')
     },
     updateStageNo() {
-      this.stageNumber = this.stageData.stageNo
+      this.number = this.stageData.stageNo
     },
     updateHP() {
-      console.log('stage HP: ', this.stageData.hitPts);
-      this.stageHP = this.stageData.hitPts
+      this.hitPts = this.stageData.hitPts
     },
     updateMoves() {
-      this.stageMoves = this.stageData.moves
+      this.moves = this.stageData.moves
     },
     updateSRanks() {
-      this.stageSRank = this.stageData.srankMoves
+      this.sRank = this.stageData.srankMoves
     },
     updateLayout() {
-      this.stageLayout = this.stageData.initialBoardSetup
+      this.layout = this.stageData.initialBoardSetup
+    },
+    updateSupportLim() {
+      this.supportLim = this.stageData.pokemon
     }
   },
   mounted () {

@@ -6,29 +6,29 @@
     <div class="card_tag card_tag-switch is-hidden-desktop" @click="switchView">Switch To Stage Info</div>
     <div class="columns">
       <div class="column">
-        <h2>Bulbasaur
+        <h2>{{ name }}
           <div class="stage_pokemonThumbnail" :style="{backgroundImage: pokemonThumbnail}"></div>
         </h2>
         <div class="glances">
           <div class="glance glance-type">
             <strong class="is-pulled-left">Type</strong>
-            <span class="is-pulled-right">Fire</span>
+            <span class="is-pulled-right" :style="{color: type.code, fontFamily: 'AvenirHeavy'}">{{ type.name }}</span>
           </div>
           <div class="glance glance-basepower">
             <strong class="is-pulled-left">Base Power</strong>
-            <span class="is-pulled-right">60</span>
+            <span class="is-pulled-right">{{ basePower }}</span>
           </div>
           <div class="glance glance-ability">
             <strong class="is-pulled-left">Ability</strong>
-            <span class="is-pulled-right">Dragon Sweep</span>
+            <span class="is-pulled-right">{{ ability }}</span>
           </div>
           <div class="glance glance-catchrate">
             <strong class="is-pulled-left">Base Catch Rate</strong>
-            <span class="is-pulled-right">17%</span>
+            <span class="is-pulled-right">{{ captureRate.base }}%</span>
           </div>
           <div class="glance glance-catchrate glance-catchrate-bonus">
             <strong class="is-pulled-left">Bonus Catch Rate</strong>
-            <span class="is-pulled-right">12%/move</span>
+            <span class="is-pulled-right">{{ `${captureRate.bonus}%/move` }}</span>
           </div>
         </div>
       </div>
@@ -37,20 +37,58 @@
 </template>
 
 <script>
+import * as Processor from './../processor'
+
 export default {
   data () {
     return {
-      thumbnailId: 50
+      thumbnail: '01',
+      name: '?',
+      type: {name: '?', code: ''},
+      basePower: '?',
+      ability: '?',
+      captureRate: {base: '', bonus: ''}
+    }
+  },
+  props: ['stageData'],
+  watch: {
+    stageData() {
+      this.updateName()
+
+      this.updateThumbnail()
+      this.updateType()
+      this.updateBP()
+      this.updateAbility()
+      this.updateCaptureRates()
     }
   },
   methods: {
     switchView() {
       this.$emit('switch-overview')
+    },
+    updateName() {
+      this.name = this.stageData.name
+    },
+    updateThumbnail() {
+      this.thumbnail = this.stageData.icon
+    },
+    updateType() {
+      this.type.code = Processor.getTypeColor(this.stageData.type)
+      this.type.name = this.stageData.type
+    },
+    updateBP() {
+      this.basePower = this.stageData.basePower
+    },
+    updateAbility() {
+      this.ability = this.stageData.ability
+    },
+    updateCaptureRates() {
+      this.captureRate = Processor.getCaptureRate(this.stageData.captureRate)
     }
   },
   computed: {
     pokemonThumbnail () {
-      return `url('./static/img/sprites/icon_${this.thumbnailId}.png')`
+      return `url('./static/img/sprites/icon_${this.thumbnail}.png')`
     }
   },
   mounted () {
