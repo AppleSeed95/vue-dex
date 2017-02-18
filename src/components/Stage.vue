@@ -2,7 +2,7 @@
   <div class="stage">
     <section-overview :stageData="stageData"></section-overview>
     <section-disruptions :stageId="stageIdApp"></section-disruptions>
-    <section-strategy :stageId="stageIdApp"></section-strategy>
+    <section-strategy :stageData="stageData"></section-strategy>
     <section-supports :stageId="stageIdApp"></section-supports>
   </div>
 </template>

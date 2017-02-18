@@ -3,8 +3,8 @@
     <div class="container">
       <h1 class="section_title">Strategy</h1>
       <div class="columns">
-        <strategy-card strat-title="Clearing"></strategy-card>
-        <strategy-card strat-title="S-Ranking"></strategy-card>
+        <strategy-card :stageData="stageData" strat-title="Clearing"></strategy-card>
+        <strategy-card :stageData="stageData" strat-title="S-Ranking"></strategy-card>
       </div>
     </div>
   </section>
@@ -19,6 +19,7 @@ export default {
 
     }
   },
+  props: ['stageData'],
   components: {
     StrategyCard
   }

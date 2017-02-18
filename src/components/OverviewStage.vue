@@ -29,7 +29,7 @@
             <span>{{ `${sRank} / ${moves}` }}</span>
           </div>
           <div class="glance glance-layout">
-            <strong>Click for starting board</strong>
+            <strong @click="openModal">Click for starting board</strong>
           </div>
         </div>
       </div>
@@ -56,7 +56,8 @@ export default {
       moves: '?',
       sRank: '?',
       hitPts: '?',
-      supportLim: ''
+      supportLim: '',
+      modalOpened: false
     }
   },
   props: ['stageData'],
@@ -92,6 +93,12 @@ export default {
     },
     updateSupportLim() {
       this.supportLim = this.stageData.pokemon
+    },
+    openModal() {
+      this.modalOpened = true
+    },
+    closeModal() {
+      this.modalOpened = false
     }
   },
   mounted () {

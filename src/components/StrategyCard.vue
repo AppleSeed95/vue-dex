@@ -1,8 +1,8 @@
 <template>
   <div class="column card card-strategy card-strategy-clear">
-    <div class="card_hdr">{{ this.stratTitle }}</div>
+    <div class="card_hdr">{{ stratTitle }}</div>
     <div class="container card_body">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum quisquam consectetur non ullam saepe molestiae quod similique nam, et iste soluta distinctio provident fugit culpa voluptate corporis esse inventore, odio!</p>
+      <p>{{ strat }}</p>
     </div>
   </div>
 </template>
@@ -11,10 +11,26 @@
 export default {
   data () {
     return {
-
+      strat: ''
     }
   },
-  props: ['stratTitle']
+  watch: {
+    stageData() {
+      this.updateStrat()
+    }
+  },
+  props: ['stratTitle', 'stageData'],
+  methods: {
+    updateStrat() {
+      if (this.stratTitle == 'Clearing') {
+        this.strat = this.stageData.clearingStrategy
+      }
+
+      if (this.stratTitle == 'S-Ranking') {
+        this.strat = this.stageData.srankingStrategy
+      }
+    }
+  }
 }
 </script>
 
