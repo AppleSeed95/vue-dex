@@ -3,7 +3,7 @@
     <section-overview :stageData="stageData"></section-overview>
     <section-disruptions :stageId="stageIdApp"></section-disruptions>
     <section-strategy :stageData="stageData"></section-strategy>
-    <section-supports :stageId="stageIdApp"></section-supports>
+    <section-supports :stageData="stageData"></section-supports>
   </div>
 </template>
 

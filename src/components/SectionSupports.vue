@@ -10,8 +10,8 @@
       </div>
       <h2 class="section_title">Suggested Team</h2>
       <div class="columns parties">
-        <supports-party party-title="Optimal"></supports-party>
-        <supports-party party-title="Alternate"></supports-party>
+        <supports-party :stageData="stageData" party-title="Optimal"></supports-party>
+        <supports-party :stageData="stageData" party-title="Alternate"></supports-party>
       </div>
     </div>
   </section>
@@ -21,15 +21,29 @@
 import SupportsCard from 'components/SupportsCard.vue'
 import SupportsParty from 'components/SupportsParty.vue'
 
+import _ from 'lodash'
+import * as Processor from './../processor'
+
 export default {
   data () {
     return {
 
     }
   },
+  watch: {
+    stageData() {
+      this.updateTeam()
+    }
+  },
+  props: ['stageData'],
   components: {
     SupportsCard,
     SupportsParty
+  },
+  methods: {
+    updateTeam() {
+      Processor.getTeams(this.stageData.suggestedTeam)
+    }
   }
 }
 </script>

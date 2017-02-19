@@ -20,18 +20,28 @@
 </template>
 
 <script>
+import _ from 'lodash'
+import * as Processor from './../processor'
+
 export default {
   data () {
     return {
 
     }
   },
+  watch: {
+    stageData() {
+
+    }
+  },
+  props: ['stageData', 'partyTitle'],
   computed: {
     partyIsOptimal () {
       return this.partyTitle == 'Optimal'
     }
   },
-  props: ['partyTitle']
+  methods: {
+  }
 }
 </script>
 

@@ -108,10 +108,36 @@ function getCaptureRate(source) {
   }
 }
 
+function getTeams(teams) {
+  let results = []
+
+  // get array of recommended teams
+  let teamsTruncated = _.trim(teams)
+  let teamsArr = breakSentences({string: teamsTruncated, mark: '\n'})
+
+  _.each(teamsArr, (team) => {
+    let config = {
+      string: team,
+      mark: '/'
+    }
+
+    let memberArr = breakSentences(config)
+    results.push(memberArr)
+  })
+
+  console.log(results);
+}
+
 function breakLine(string) {
   if (string) {
 		return string.split('\n');
 	}
 }
 
-export {getStage, getTypeColor, getCaptureRate}
+function breakSentences(config) {
+  if (config.string) {
+    return config.string.split(config.mark)
+  }
+}
+
+export {getStage, getTypeColor, getCaptureRate, getTeams}
