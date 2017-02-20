@@ -134,6 +134,17 @@ function getMembers(team) {
   return results
 }
 
+function getMegaSupports(source) {
+  let results = _.words(source, /\[(.*?)\]/g)
+  return results
+}
+
+function getOtherSupports(source) {
+  let supportsArrFull = breakLine(source)
+  let supportsArrOther = _.drop(supportsArrFull)
+  return _.words(_.compact(supportsArrOther), /[^, ]+/g)
+}
+
 function getStageCollection() {
   let url = './static/scripts/pokemonCollection.json'
 
@@ -147,22 +158,45 @@ function getStageCollection() {
 }
 
 function getStagePokemon(config) {
-  let divisionMega = {}, divisionOthers = {}
+  let divisionMega = {}, divisionOthers = {},
+      divisionMain = [], divisionSpecial = [], divisionExpert = []
+
   return getStageCollection()
   .then((collection) => {
     divisionMega = _.flatten(_.toArray(_.pick(collection, 'mega')))
     divisionOthers = _.flatten(_.toArray(_.pick(collection, ['expert', 'main', 'special'])))
+
+    divisionMain = _.flatten(_.toArray(_.pick(collection, 'main')))
+    divisionExpert = _.flatten(_.toArray(_.pick(collection, 'expert')))
+    divisionSpecial = _.flatten(_.toArray(_.pick(collection, 'special')))
   })
   .then(() => {
     if (config.isMega) {
       return _.find(divisionMega, (pokemon) => {
         return _.toLower(pokemon.pokemonName).includes(_.toLower(config.name))
       })
-    } else {
-      console.log('other div: ', divisionOthers);
+    } else if (config.separateDivision == '') {
       return _.find(divisionOthers, (pokemon) => {
         return _.toLower(pokemon.pokemonName).includes(_.toLower(config.name))
       })
+    } else {
+      if (config.separateDivision == 'main') {
+        return _.find(divisionMain, (pokemon) => {
+          return _.toLower(pokemon.pokemonName).includes(_.toLower(config.name))
+        })
+      }
+
+      if (config.separateDivision == 'expert') {
+        return _.find(divisionExpert, (pokemon) => {
+          return _.toLower(pokemon.pokemonName).includes(_.toLower(config.name))
+        })
+      }
+
+      if (config.separateDivision == 'special') {
+        return _.find(divisionSpecial, (pokemon) => {
+          return _.toLower(pokemon.pokemonName).includes(_.toLower(config.name))
+        })
+      }
     }
   })
 }
@@ -179,4 +213,4 @@ function breakSentences(config) {
   }
 }
 
-export {getStage, getTypeColor, getCaptureRate, getTeams, getMembers, getStageCollection, getStagePokemon}
+export {getStage, getTypeColor, getCaptureRate, getTeams, getMembers, getStageCollection, getStagePokemon, getMegaSupports, getOtherSupports}

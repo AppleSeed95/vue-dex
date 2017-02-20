@@ -3,10 +3,10 @@
     <div class="container">
       <h1 class="section_title">Supports</h1>
       <div class="columns">
-        <supports-card supports-title="Mega Slot"></supports-card>
-        <supports-card supports-title="Main Stage"></supports-card>
-        <supports-card supports-title="Expert Stage"></supports-card>
-        <supports-card supports-title="Special Stage"></supports-card>
+        <supports-card :slots="slotsMega" supports-title="Mega Slot"></supports-card>
+        <supports-card :slots="slotsMain" supports-title="Main Stage"></supports-card>
+        <supports-card :slots="slotsExpert" supports-title="Expert Stage"></supports-card>
+        <supports-card :slots="slotsSpecial" supports-title="Special Stage"></supports-card>
       </div>
       <h2 class="section_title">Suggested Team</h2>
       <div class="columns parties">
@@ -28,11 +28,17 @@ export default {
   data () {
     return {
       teamOptimal: [],
-      teamsOther: []
+      teamsOther: [],
+      slotsMega: [],
+      slotsMain: [],
+      slotsExpert: [],
+      slotsSpecial: []
     }
   },
   watch: {
     stageData() {
+      this.updateMegaSlots()
+      this.updateOtherSlots()
       this.updateTeam()
     }
   },
@@ -46,6 +52,53 @@ export default {
       let teams = Processor.getTeams(this.stageData.suggestedTeam)
       this.teamOptimal = teams.shift()
       this.teamsOther = _.concat(teams)
+    },
+    updateMegaSlots() {
+      let megas = Processor.getMegaSupports(this.stageData.recommendedParty)
+
+      _.each(megas, (mega) => {
+        let configSupportMega = {name: mega.slice(1, -1) || '', isMega: true, separateDivision: ''}
+
+        Processor.getStagePokemon(configSupportMega).then(data => {
+          if (data) {
+            this.slotsMega.push(data)
+          }
+        })
+      })
+
+      console.log('mega slots: ', this.slotsMega)
+    },
+    updateOtherSlots() {
+      let supports = Processor.getOtherSupports(this.stageData.recommendedParty)
+      console.log('support choices: ', supports)
+
+      _.each(supports, (support) => {
+        let configSupportMain = {name: support || '', isMega: false, separateDivision: 'main'}
+        let configSupportExpert = {name: support || '', isMega: false, separateDivision: 'expert'}
+        let configSupportSpecial = {name: support || '', isMega: false, separateDivision: 'special'}
+
+        Processor.getStagePokemon(configSupportMain).then(data => {
+          if (data) {
+            this.slotsMain.push(data)
+          }
+        })
+
+        Processor.getStagePokemon(configSupportExpert).then(data => {
+          if (data) {
+            this.slotsExpert.push(data)
+          }
+        })
+
+        Processor.getStagePokemon(configSupportSpecial).then(data => {
+          if (data) {
+            this.slotsSpecial.push(data)
+          }
+        })
+      })
+
+      console.log('main slots: ', this.slotsMain)
+      console.log('expert slots: ', this.slotsExpert)
+      console.log('special slots: ', this.slotsSpecial)
     }
   }
 }

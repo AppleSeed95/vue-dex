@@ -55,14 +55,14 @@ export default {
     },
     updateThumbnails() {
       // mega thumbnails
-      let configMega = {name: this.megaSlot || '', isMega: true}
+      let configMega = {name: this.megaSlot || '', isMega: true, separateDivision: ''}
       Processor.getStagePokemon(configMega).then((data) => {
         this.megaData = data
       })
 
       // supports thumbnails
       _.each(this.supportSlots, (support) => {
-        let configSupport = {name: support || '', isMega: false}
+        let configSupport = {name: support || '', isMega: false, separateDivision: ''}
         Processor.getStagePokemon(configSupport).then(data => {
           this.supportsData.push(data)
         })

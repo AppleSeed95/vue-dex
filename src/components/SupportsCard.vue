@@ -3,8 +3,8 @@
     <div class="card_hdr">{{ this.supportsTitle }}</div>
     <div class="container card_body">
       <ul class="supports columns is-multiline is-mobile">
-        <li v-for="index in [1, 2, 3, 4, 5]" class="column is-narrow">
-          <img src="./../assets/img/sprites/icon_01.png" alt="slot">
+        <li v-for="slot in slots" class="column is-narrow">
+          <img :src="slot.pokemonIcon || ''" alt="slot">
         </li>
       </ul>
     </div>
@@ -23,7 +23,7 @@ export default {
       return this.supportsTitle == 'Mega Slot'
     }
   },
-  props: ['supportsTitle']
+  props: ['supportsTitle', 'slots']
 }
 </script>
 
