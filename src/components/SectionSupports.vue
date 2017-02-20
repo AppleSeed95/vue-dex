@@ -37,6 +37,7 @@ export default {
   },
   watch: {
     stageData() {
+      this.resetData()
       this.updateMegaSlots()
       this.updateOtherSlots()
       this.updateTeam()
@@ -48,10 +49,19 @@ export default {
     SupportsParty
   },
   methods: {
+    resetData() {
+      this.teamOptimal = []
+      this.teamsOther = []
+      this.slotsMega = []
+      this.slotsMain = []
+      this.slotsExpert = []
+      this.slotsSpecial = []
+    },
     updateTeam() {
       let teams = Processor.getTeams(this.stageData.suggestedTeam)
       this.teamOptimal = teams.shift()
       this.teamsOther = _.concat(teams)
+      console.log('alternative teams: ', this.teamsOther);
     },
     updateMegaSlots() {
       let megas = Processor.getMegaSupports(this.stageData.recommendedParty)

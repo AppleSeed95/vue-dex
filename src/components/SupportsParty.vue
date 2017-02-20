@@ -37,6 +37,7 @@ export default {
     },
     megaSlot() {
       let target = Processor.getMembers(this.teamData)[0]
+      console.log('mega slot in party: ', target);
       if (target) {
         return target.slice(1, -1)
       } else {
