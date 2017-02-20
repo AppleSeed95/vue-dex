@@ -10,8 +10,8 @@
       </div>
       <h2 class="section_title">Suggested Team</h2>
       <div class="columns parties">
-        <supports-party :stageData="stageData" party-title="Optimal"></supports-party>
-        <supports-party :stageData="stageData" party-title="Alternate"></supports-party>
+        <supports-party :teamData="teamOptimal" party-title="Optimal"></supports-party>
+        <supports-party v-for="team in teamsOther" :teamData="team" party-title="Alternate"></supports-party>
       </div>
     </div>
   </section>
@@ -27,7 +27,8 @@ import * as Processor from './../processor'
 export default {
   data () {
     return {
-
+      teamOptimal: [],
+      teamsOther: []
     }
   },
   watch: {
@@ -42,7 +43,9 @@ export default {
   },
   methods: {
     updateTeam() {
-      Processor.getTeams(this.stageData.suggestedTeam)
+      let teams = Processor.getTeams(this.stageData.suggestedTeam)
+      this.teamOptimal = teams.shift()
+      this.teamsOther = _.concat(teams)
     }
   }
 }

@@ -44,6 +44,7 @@ export default {
         id: this.stageIdApp
       }
       Processor.getStage(processorConfig).then((data) => {
+        console.log('stage phase: ', this.stageUrlStage);
         if (data) {
           this.stageData = data
           let sranking = data.srankingStrategy

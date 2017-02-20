@@ -115,6 +115,7 @@ function getTeams(teams) {
   let teamsTruncated = _.trim(teams)
   let teamsArr = breakSentences({string: teamsTruncated, mark: '\n'})
 
+  // split 1 team into array of members
   _.each(teamsArr, (team) => {
     let config = {
       string: team,
@@ -125,7 +126,45 @@ function getTeams(teams) {
     results.push(memberArr)
   })
 
-  console.log(results);
+  return _.compact(results)
+}
+
+function getMembers(team) {
+  let results = _.words(team, /[^, ]+/g)
+  return results
+}
+
+function getStageCollection() {
+  let url = './static/scripts/pokemonCollection.json'
+
+  return api.get(url)
+    .then(resp => {
+      return resp.body
+    })
+    .catch((error) => {
+      console.log('there is some error getting stage collection here!')
+    })
+}
+
+function getStagePokemon(config) {
+  let divisionMega = {}, divisionOthers = {}
+  return getStageCollection()
+  .then((collection) => {
+    divisionMega = _.flatten(_.toArray(_.pick(collection, 'mega')))
+    divisionOthers = _.flatten(_.toArray(_.pick(collection, ['expert', 'main', 'special'])))
+  })
+  .then(() => {
+    if (config.isMega) {
+      return _.find(divisionMega, (pokemon) => {
+        return _.toLower(pokemon.pokemonName).includes(_.toLower(config.name))
+      })
+    } else {
+      console.log('other div: ', divisionOthers);
+      return _.find(divisionOthers, (pokemon) => {
+        return _.toLower(pokemon.pokemonName).includes(_.toLower(config.name))
+      })
+    }
+  })
 }
 
 function breakLine(string) {
@@ -140,4 +179,4 @@ function breakSentences(config) {
   }
 }
 
-export {getStage, getTypeColor, getCaptureRate, getTeams}
+export {getStage, getTypeColor, getCaptureRate, getTeams, getMembers, getStageCollection, getStagePokemon}
