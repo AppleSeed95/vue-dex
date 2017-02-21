@@ -71,8 +71,6 @@ export default {
     this.$nextTick(() => {
       window.addEventListener('resize', this.calculateScreensize);
       this.calculateScreensize()
-
-      //bus.$on('update', this.updateOverview)
     })
   }
 }

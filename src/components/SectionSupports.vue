@@ -60,22 +60,7 @@ export default {
       this.slotsSpecial = []
     },
     updateTeam() {
-      let teams = []
-      let teamsArr = _.split(_.trim(this.stageData.suggestedTeam), '\n')
-      // split 1 team into array of members
-      _.each(teamsArr, (team) => {
-        if (team.length > 0) {
-          let memberArr = _.words(team, /[^, ]+/g)
-          teams.push(memberArr)
-        }
-      })
 
-      this.teamOptimal = teams.pop()
-      //this.$set(this.teamOptimal, teams.pop())
-      console.log('optimal team: ', this.teamOptimal);
-      this.teamAlt = teams.pop()
-      //this.$set(this.teamAlt, teams.pop())
-      console.log('alt team: ', this.teamAlt);
     },
     updateMegaSlots() {
       let megas = Processor.getMegaSupports(this.stageData.recommendedParty)
