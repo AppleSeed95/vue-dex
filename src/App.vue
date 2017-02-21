@@ -12,7 +12,7 @@
       </div>
     </nav>
   </div>
-  <div class="container is-fluid" :style="{margin: '0'}">
+  <div class="container is-fluid">
     <nav class="level nav-stages">
       <div class="level-left">
         <form>Stage
@@ -55,9 +55,7 @@
 <script>
 import _ from 'lodash'
 
-import {
-  router
-} from './main'
+import {router} from './main'
 import Stage from 'components/Stage.vue'
 import * as Resources from './resources'
 import bus from './bus.js'

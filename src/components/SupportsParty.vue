@@ -37,7 +37,6 @@ export default {
     },
     megaSlot() {
       let target = Processor.getMembers(this.teamData)[0]
-      console.log('mega slot in party: ', target);
       if (target) {
         return target.slice(1, -1)
       } else {
@@ -55,6 +54,8 @@ export default {
       this.supportsData = []
     },
     updateThumbnails() {
+      console.log('team data: ', this.teamData);
+
       // mega thumbnails
       let configMega = {name: this.megaSlot || '', isMega: true, separateDivision: ''}
       Processor.getStagePokemon(configMega).then((data) => {
@@ -68,6 +69,7 @@ export default {
           this.supportsData.push(data)
         })
       })
+
     }
   }
 }

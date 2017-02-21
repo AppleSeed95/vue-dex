@@ -13,6 +13,7 @@
     @include text-label;
     min-height: 60px;
     border-bottom: 3px solid $pal-gray;
+    background: $pal-white;
 
     .level-left {
       margin-left: 40px;

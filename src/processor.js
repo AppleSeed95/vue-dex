@@ -117,16 +117,13 @@ function getTeams(teams) {
 
   // split 1 team into array of members
   _.each(teamsArr, (team) => {
-    let config = {
-      string: team,
-      mark: '/'
+    if (team.length > 0) {
+      let memberArr = _.words(team, /[^, ]+/g)
+      results.push(memberArr)
     }
-
-    let memberArr = breakSentences(config)
-    results.push(memberArr)
   })
-
-  return _.compact(results)
+  console.log('compact team suggestion: ', results);
+  return results
 }
 
 function getMembers(team) {
@@ -194,7 +191,7 @@ function getStagePokemon(config) {
 
       if (config.separateDivision == 'special') {
         return _.find(divisionSpecial, (pokemon) => {
-          return _.toLower(pokemon.pokemonName).includes(_.toLower(config.name))
+          return _.toLower(pokemon.pokemonName).includes(_.toLower(config.name)) && !_.toLower(pokemon.pokemonName).includes('mega ')
         })
       }
     }

@@ -10,8 +10,8 @@
       </div>
       <h2 class="section_title">Suggested Team</h2>
       <div class="columns parties">
-        <supports-party :teamData="teamOptimal" party-title="Optimal"></supports-party>
-        <supports-party v-for="team in teamsOther" :teamData="team" party-title="Alternate"></supports-party>
+        <supports-party v-if="teamOptimal" :teamData="teamOptimal" party-title="Optimal"></supports-party>
+        <supports-party v-if="teamAlt" :teamData="teamAlt" party-title="Alternate"></supports-party>
       </div>
     </div>
   </section>
@@ -27,8 +27,9 @@ import * as Processor from './../processor'
 export default {
   data () {
     return {
-      teamOptimal: [],
-      teamsOther: [],
+      teamOptimal: null,
+      teamsOther: null,
+      teamAlt: null,
       slotsMega: [],
       slotsMain: [],
       slotsExpert: [],
@@ -50,18 +51,31 @@ export default {
   },
   methods: {
     resetData() {
-      this.teamOptimal = []
-      this.teamsOther = []
+      this.teamOptimal = null
+      this.teamsOther = null
+      this.teamAlt = null
       this.slotsMega = []
       this.slotsMain = []
       this.slotsExpert = []
       this.slotsSpecial = []
     },
     updateTeam() {
-      let teams = Processor.getTeams(this.stageData.suggestedTeam)
-      this.teamOptimal = teams.shift()
-      this.teamsOther = _.concat(teams)
-      console.log('alternative teams: ', this.teamsOther);
+      let teams = []
+      let teamsArr = _.split(_.trim(this.stageData.suggestedTeam), '\n')
+      // split 1 team into array of members
+      _.each(teamsArr, (team) => {
+        if (team.length > 0) {
+          let memberArr = _.words(team, /[^, ]+/g)
+          teams.push(memberArr)
+        }
+      })
+
+      this.teamOptimal = teams.pop()
+      //this.$set(this.teamOptimal, teams.pop())
+      console.log('optimal team: ', this.teamOptimal);
+      this.teamAlt = teams.pop()
+      //this.$set(this.teamAlt, teams.pop())
+      console.log('alt team: ', this.teamAlt);
     },
     updateMegaSlots() {
       let megas = Processor.getMegaSupports(this.stageData.recommendedParty)
@@ -105,10 +119,11 @@ export default {
           }
         })
       })
-
+      /*
       console.log('main slots: ', this.slotsMain)
       console.log('expert slots: ', this.slotsExpert)
       console.log('special slots: ', this.slotsSpecial)
+      */
     }
   }
 }
