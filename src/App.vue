@@ -2,17 +2,12 @@
 <div>
   <div class="container is-fluid" :style="{margin: '0'}">
     <nav class="nav nav-main">
-      <!--
-              <div class="nav-left">
-                  <router-link class="nav-item" to="home">Pokemon Shuffle Guide</router-link>
-              </div>
-              -->
       <div class="nav-right">
         <router-link class="nav-item" to="home">About</router-link>
       </div>
     </nav>
   </div>
-  <div class="container is-fluid">
+  <div class="container is-fluid" :style="[stickUp ? stickyStyling : null, {margin: '0'}]">
     <nav class="level nav-stages">
       <div class="level-left">
         <form>Stage
@@ -64,7 +59,15 @@ export default {
   data() {
     return {
       stageIdApp: 0,
-      stageUrl: ''
+      stageUrl: '',
+      stickUp: false,
+      stickyStyling: {
+        margin: 0,
+        position: 'fixed',
+        zIndex: 2,
+        width: '100%',
+        top: 0
+      }
     }
   },
   components: {
@@ -74,10 +77,20 @@ export default {
 
   },
   methods: {
-
+    calculatePosY() {
+      let scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop
+      if (scrollTop > 80) {
+        this.stickUp = true
+      } else {
+        this.stickUp = false
+      }
+    }
   },
-  mounted() {
-
+  mounted () {
+    this.$nextTick(() => {
+      window.addEventListener('scroll', this.calculatePosY);
+      this.calculatePosY()
+    })
   }
 }
 </script>
