@@ -101,9 +101,6 @@ function getCaptureRate(source) {
   let captureRateBase = captureRates[0].slice(5, -1)
   let captureRateBonus = captureRates[1].slice(6, -5)
 
-  console.log('capture base: ', captureRateBase)
-  console.log('capture bonus: ', captureRateBonus)
-
   if (isNaN(parseInt(captureRateBonus)) || isNaN(parseInt(captureRateBase))) {
     return {base: '0', bonus: '0'}
   } else {

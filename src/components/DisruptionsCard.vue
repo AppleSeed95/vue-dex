@@ -1,14 +1,12 @@
 <template>
   <div class="column card card-disruptions card-disruptions-board">
-    <div class="card_hdr">{{ this.disruptionTitle }}</div>
+    <div class="card_hdr">{{ disruptionTitle }}</div>
     <div class="container card_body">
       <ul class="disruptions">
-        <li>Adds a column of Barrier if you don’t make a combo of 4+</li>
-        <li>Any of the following
+        <li v-for="disruption in disruptions">{{ capitalize(disruption) }}</li>
+        <li v-if="variations"> {{ hasVariations ? 'Any of the following:' : '' }}
           <ul>
-            <li>Adds 345 blocks if you don't make a combo of 6</li>
-            <li>Adds 345 blocks if you don't make a combo of 6</li>
-            <li>Adds 345 blocks if you don't make a combo of 6</li>
+
           </ul>
         </li>
       </ul>
@@ -20,10 +18,25 @@
 export default {
   data () {
     return {
-
+      hasVariations: false
     }
   },
-  props: ['disruptionTitle']
+  props: ['disruptionTitle', 'disruptions', 'variations'],
+  watch: {
+    disruptions() {
+      this.updateVariations()
+    }
+  },
+  methods: {
+    updateVariations() {
+      if (_.isArray(this.variations) && this.variations.length > 0) {
+        this.hasVariations = true
+      }
+    },
+    capitalize(string) {
+      return _.upperFirst(string)
+    }
+  }
 }
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <div class="stage">
     <section-overview :stageData="stageData"></section-overview>
-    <section-disruptions :stageId="stageIdApp"></section-disruptions>
+    <section-disruptions :stageData="stageData"></section-disruptions>
     <section-strategy :stageData="stageData"></section-strategy>
     <section-supports :stageData="stageData"></section-supports>
   </div>
