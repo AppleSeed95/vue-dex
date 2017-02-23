@@ -21,7 +21,8 @@ export default {
   data () {
     return {
       stageUrlStage: '',
-      stageData: {}
+      stageData: {},
+      stageId: ''
     }
   },
   components: {
@@ -61,7 +62,10 @@ export default {
       this.stageUrlStage = Resources.getStageUrl(1, this.stageIdApp)
     }
   },
-  mounted () {}
+  mounted () {
+    console.log(this)
+    // this.id = this.$route.params.stageId
+  }
 }
 </script>
 

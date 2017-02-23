@@ -179,19 +179,19 @@ function getStagePokemon(config) {
     } else {
       if (config.separateDivision == 'main') {
         return _.find(divisionMain, (pokemon) => {
-          return _.toLower(pokemon.pokemonName).includes(_.toLower(config.name))
+          return _.toLower(pokemon.pokemonName) == _.toLower(config.name) && !_.toLower(pokemon.pokemonName).includes('mega ')
         })
       }
 
       if (config.separateDivision == 'expert') {
         return _.find(divisionExpert, (pokemon) => {
-          return _.toLower(pokemon.pokemonName).includes(_.toLower(config.name))
+          return _.toLower(pokemon.pokemonName) == _.toLower(config.name)
         })
       }
 
       if (config.separateDivision == 'special') {
         return _.find(divisionSpecial, (pokemon) => {
-          return _.toLower(pokemon.pokemonName).includes(_.toLower(config.name)) && !_.toLower(pokemon.pokemonName).includes('mega ')
+          return _.toLower(pokemon.pokemonName).startsWith(_.toLower(config.name)) && !_.toLower(pokemon.pokemonName).includes('mega ')
         })
       }
     }

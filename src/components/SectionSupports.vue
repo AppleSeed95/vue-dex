@@ -60,7 +60,9 @@ export default {
       this.slotsSpecial = []
     },
     updateTeam() {
-
+      let teams = _.compact(_.split(this.stageData.suggestedTeam, '\n'))
+      this.teamOptimal = _.split(teams.pop(), ',')
+      console.log('team choice opt: ', this.teamOptimal)
     },
     updateMegaSlots() {
       let megas = Processor.getMegaSupports(this.stageData.recommendedParty)

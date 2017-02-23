@@ -28,7 +28,7 @@
           </div>
           <div class="glance glance-catchrate glance-catchrate-bonus">
             <strong class="is-pulled-left">Bonus Catch Rate</strong>
-            <span class="is-pulled-right">{{ `${captureRate.bonus}%/move` }}</span>
+            <span class="is-pulled-right">{{ `${captureRate.bonus}per move` }}</span>
           </div>
         </div>
       </div>

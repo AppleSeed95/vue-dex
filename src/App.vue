@@ -12,7 +12,7 @@
       <div class="level-left">
         <form>Stage
           <span>
-                  <input v-model="stageIdApp" class="stagesSelector" type="text" placeholder="1" @keyup.enter.prevent="">
+                  <input v-model="stageIdApp" class="stagesSelector" type="text" placeholder="1" @keyup.enter.prevent="submit">
                 </span>
         </form>
       </div>
@@ -28,6 +28,7 @@
   </div>
   <div class="container">
     <!-- STAGE COMPONENT -->
+    <!-- <router-view></router-view> -->
     <stage :stageIdApp="this.stageIdApp" :stageUrlApp="this.stageUrl"></stage>
   </div>
   <footer class="footer" :style="{padding: '3rem 1.5rem'}">
@@ -84,7 +85,17 @@ export default {
       } else {
         this.stickUp = false
       }
+    },
+    /*
+    submit() {
+      router.push({
+        name: 'stage',
+        params: {
+          stageId: this.stageIdApp
+        }
+      })
     }
+    */
   },
   mounted () {
     this.$nextTick(() => {
