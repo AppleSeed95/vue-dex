@@ -3,6 +3,7 @@
     <div class="card_hdr">{{ disruptionTitle }}</div>
     <div class="container card_body">
       <ul class="disruptions">
+        <li v-if="disruptionsTrigger"> <strong>Condition:</strong> {{ disruptionsTrigger }}</li>
         <li v-for="disruption in disruptions">{{ capitalize(disruption) }}</li>
         <li v-if="variations"> {{ hasVariations ? 'Any of the following:' : '' }}
           <ul>
@@ -21,7 +22,7 @@ export default {
       hasVariations: false
     }
   },
-  props: ['disruptionTitle', 'disruptions', 'variations'],
+  props: ['disruptionTitle', 'disruptions', 'disruptionsTrigger', 'variations'],
   watch: {
     disruptions() {
       this.updateVariations()

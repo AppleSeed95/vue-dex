@@ -6,7 +6,7 @@
         <disruptions-card :disruptions="disruptionBoard" :variations="disruptionBoardVariations" disruption-title="Board" class="is-hidden-touch"></disruptions-card>
         <disruptions-card :disruptions="disruptionInitial" disruption-title="Initial" class="is-hidden-touch"></disruptions-card>
         <disruptions-card :disruptions="disruptionTimer" disruption-title="Timer" class="is-hidden-touch"></disruptions-card>
-        <disruptions-card disruption-title="Conditional" class="is-hidden-touch"></disruptions-card>
+        <disruptions-card :disruptions="disruptionCondition" :disruptionsTrigger="disruptionConditionTrigger" disruption-title="Conditional" class="is-hidden-touch"></disruptions-card>
         <disruptions-card-group class="is-hidden-desktop"></disruptions-card-group>
       </div>
       <div class="section_ftr addedSupp">
@@ -29,8 +29,8 @@ export default {
       disruptionBoard: [],
       disruptionInitial: [],
       disruptionTimer: [],
-      disruptionCondition: '',
-      disruptionConditionTrigger: '',
+      disruptionCondition: null,
+      disruptionConditionTrigger: null,
       disruptionBoardVariations: [],
       disruptionInitialVariations: [],
       disruptionTimerVariations: []
@@ -79,7 +79,7 @@ export default {
           disruptionCond = _.trim(_.split(line, ':')[1])
           disruptionCondTrigger = _.trim(_.split(line, ':')[0])
           this.disruptionConditionTrigger = disruptionCondTrigger
-          this.disruptionCondition = disruptionCond
+          this.disruptionCondition = _.split(disruptionCond, '.')
         }
       })
 
