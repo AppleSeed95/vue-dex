@@ -34,6 +34,8 @@
 
     &_content {
       padding: 10px 20px;
+      display: flex;
+      align-items: center;
 
       > img {
         @extend %pokemon-slot;

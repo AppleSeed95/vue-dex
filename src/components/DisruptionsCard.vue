@@ -7,7 +7,7 @@
         <li v-for="disruption in disruptions">{{ capitalize(disruption) }}</li>
         <li v-if="variations"> {{ hasVariations ? 'Any of the following:' : '' }}
           <ul>
-
+            <li v-for="variation in variations"> {{ variation }}</li>
           </ul>
         </li>
       </ul>
