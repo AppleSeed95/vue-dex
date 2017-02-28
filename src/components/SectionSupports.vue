@@ -10,8 +10,8 @@
       </div>
       <h2 class="section_title">Suggested Team</h2>
       <div class="columns parties">
-        <supports-party v-if="teamOptimal" :teamData="teamOptimal" party-title="Optimal"></supports-party>
-        <supports-party v-if="teamAlt" :teamData="teamAlt" party-title="Alternate"></supports-party>
+        <supports-party v-if="teamOptimal && teamOptimal.length > 0" :teamData="teamOptimal" party-title="Optimal"></supports-party>
+        <supports-party v-if="teamAlt && teamAlt.length > 0" :teamData="teamAlt" party-title="Alternate"></supports-party>
       </div>
     </div>
   </section>
@@ -27,9 +27,9 @@ import * as Processor from './../processor'
 export default {
   data () {
     return {
-      teamOptimal: null,
-      teamsOther: null,
-      teamAlt: null,
+      teamOptimal: [],
+      teamsOther: [],
+      teamAlt: [],
       slotsMega: [],
       slotsMain: [],
       slotsExpert: [],
@@ -51,9 +51,9 @@ export default {
   },
   methods: {
     resetData() {
-      this.teamOptimal = null
-      this.teamsOther = null
-      this.teamAlt = null
+      this.teamOptimal = []
+      this.teamsOther = []
+      this.teamAlt = []
       this.slotsMega = []
       this.slotsMain = []
       this.slotsExpert = []
@@ -61,8 +61,21 @@ export default {
     },
     updateTeam() {
       let teams = _.compact(_.split(this.stageData.suggestedTeam, '\n'))
-      this.teamOptimal = _.split(teams.pop(), ',')
-      console.log('team choice opt: ', this.teamOptimal)
+      let team_1 = _.map(_.compact(_.split(teams.shift(), ',')), _.trim)
+
+      // mega thumbnails
+      let configMega = {name: _.trim(this.megaSlot(team_1)) || '', isMega: true, separateDivision: ''}
+      Processor.getStagePokemon(configMega).then((data) => {
+        this.teamOptimal.push(data)
+      })
+
+      // supports thumbnails
+      _.each(this.supportSlots(team_1), (support) => {
+        let configSupport = {name: _.trim(support) || '', isMega: false, separateDivision: ''}
+        Processor.getStagePokemon(configSupport).then(data => {
+          this.teamOptimal.push(data)
+        })
+      })
     },
     updateMegaSlots() {
       let megas = Processor.getMegaSupports(this.stageData.recommendedParty)
@@ -111,6 +124,18 @@ export default {
       console.log('expert slots: ', this.slotsExpert)
       console.log('special slots: ', this.slotsSpecial)
       */
+    },
+    megaSlot(teamArr) {
+      let target = Processor.getMembers(teamArr)[0]
+      if (target) {
+        return target.slice(1, -1)
+      } else {
+        return ''
+      }
+    },
+    supportSlots(teamArr) {
+      let supports = _.drop(Processor.getMembers(teamArr))
+      return supports
     }
   }
 }

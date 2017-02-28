@@ -1,13 +1,12 @@
 <template>
   <div :class="['column is-4 card card-party', partyIsOptimal ? 'party-optimal' : 'party-alt']">
-    <!-- <div class="party_hdr">{{ this.partyTitle }}</div> -->
     <div class="card_tag">{{ this.partyTitle }}</div>
     <div class="card-party_content">
-      <div :class="['card-party_slot', 'card-party_slot-mega', megaSlot]">
-        <img :src="megaData.pokemonIcon || ''" alt="Mega Slot">
+      <div :class="['card-party_slot', 'card-party_slot-mega']">
+        <img :src="megaSlot ? megaSlot.pokemonIcon : ''" alt="Mega Slot">
       </div>
-      <div v-for="support in supportsData" :class="['card-party_slot', support]">
-        <img :src="support.pokemonIcon || ''" alt="Support Slot">
+      <div v-for="support in supportSlots" :class="['card-party_slot', support]">
+        <img :src="support ? support.pokemonIcon : ''" alt="Support Slot">
       </div>
     </div>
   </div>
@@ -27,7 +26,7 @@ export default {
   watch: {
     teamData() {
       this.resetData()
-      this.updateThumbnails()
+      // this.updateThumbnails()
     }
   },
   props: ['teamData', 'partyTitle'],
@@ -36,15 +35,10 @@ export default {
       return this.partyTitle == 'Optimal'
     },
     megaSlot() {
-      let target = Processor.getMembers(this.teamData)[0]
-      if (target) {
-        return target.slice(1, -1)
-      } else {
-        return ''
-      }
+      return this.teamData ? this.teamData[0] : ''
     },
     supportSlots() {
-      let supports = _.drop(Processor.getMembers(this.teamData))
+      let supports = _.drop(this.teamData)
       return supports
     }
   },
@@ -57,14 +51,14 @@ export default {
       console.log('team data: ', this.teamData);
 
       // mega thumbnails
-      let configMega = {name: this.megaSlot || '', isMega: true, separateDivision: ''}
+      let configMega = {name: _.trim(this.megaSlot) || '', isMega: true, separateDivision: ''}
       Processor.getStagePokemon(configMega).then((data) => {
         this.megaData = data
       })
 
       // supports thumbnails
       _.each(this.supportSlots, (support) => {
-        let configSupport = {name: support || '', isMega: false, separateDivision: ''}
+        let configSupport = {name: _.trim(support) || '', isMega: false, separateDivision: ''}
         Processor.getStagePokemon(configSupport).then(data => {
           this.supportsData.push(data)
         })
