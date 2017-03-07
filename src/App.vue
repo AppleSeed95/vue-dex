@@ -31,11 +31,11 @@
     <!-- <router-view></router-view> -->
     <stage :stageIdApp="this.stageIdApp" :stageUrlApp="this.stageUrl"></stage>
   </div>
-  <footer class="footer" :style="{padding: '3rem 1.5rem'}">
+  <footer class="footer" :style="{padding: '30px 0 0 0'}">
     <div class="container">
       <div class="content has-text-centered">
         <p>
-          Built by <strong>Shelune</strong>. With <a href="http://bulma.io/">Bulma</a> & <a href="https://vuejs.org/">Vue</a>. And love.
+          Built by <strong>Shelune</strong>. With <a href="http://bulma.io/">Bulma</a> & <a href="https://vuejs.org/">Vue</a>.
         </p>
         <p>
           <a class="icon" href="https://github.com/shelune/vue-shuffle-dex">

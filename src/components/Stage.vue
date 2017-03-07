@@ -64,7 +64,6 @@ export default {
   },
   mounted () {
     console.log(this)
-    // this.id = this.$route.params.stageId
   }
 }
 </script>

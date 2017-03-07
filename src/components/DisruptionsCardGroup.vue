@@ -7,7 +7,7 @@
     <div :class="[currentMode == 'Board' ? 'show' : '' ,'container card_body']">
       <ul class="disruptions">
         <li v-for="disruption in disruptionBoard">{{ capitalize(disruption) }}</li>
-        <li v-if="disruptionBoardVariations"> {{ 'Any of the following:' }}
+        <li v-if="disruptionBoardVariations && disruptionBoardVariations.length > 0"> {{ 'Any of the following:' }}
           <ul>
             <li v-for="variation in disruptionBoardVariations"> {{ variation }}</li>
           </ul>
@@ -17,7 +17,7 @@
     <div :class="[currentMode == 'Initial' ? 'show' : '' ,'container card_body']">
       <ul class="disruptions">
         <li v-for="disruption in disruptionInitial">{{ capitalize(disruption) }}</li>
-        <li v-if="disruptionInitialVariations"> {{ 'Any of the following:' }}
+        <li v-if="disruptionInitialVariations && disruptionInitialVariations.length > 0"> {{ 'Any of the following:' }}
           <ul>
             <li v-for="variation in disruptionInitialVariations"> {{ variation }}</li>
           </ul>
@@ -27,7 +27,7 @@
     <div :class="[currentMode == 'Timer' ? 'show' : '' ,'container card_body']">
       <ul class="disruptions">
         <li v-for="disruption in disruptionTimer">{{ capitalize(disruption) }}</li>
-        <li v-if="disruptionTimerVariations"> {{ 'Any of the following:' }}
+        <li v-if="disruptionTimerVariations & disruptionTimerVariations.length > 0"> {{ 'Any of the following:' }}
           <ul>
             <li v-for="variation in disruptionTimerVariations"> {{ variation }}</li>
           </ul>
