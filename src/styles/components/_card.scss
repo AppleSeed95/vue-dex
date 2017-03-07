@@ -289,9 +289,13 @@
   &_slot {
     margin: 0 5px;
     position: relative;
+    width: 60px;
+    height: 60px;
 
     > img {
       @extend %pokemon-slot;
+      width: 100%;
+      height: auto;
     }
 
     &:after {

@@ -7,7 +7,14 @@
         <disruptions-card :disruptions="disruptionInitial" :variations="disruptionInitialVariations" disruption-title="Initial"  class="is-hidden-touch"></disruptions-card>
         <disruptions-card :disruptions="disruptionTimer" :variations="disruptionTimerVariations" disruption-title="Timer"  class="is-hidden-touch"></disruptions-card>
         <disruptions-card :disruptions="disruptionCondition" :disruptionsTrigger="disruptionConditionTrigger" disruption-title="Conditional" class="is-hidden-touch"></disruptions-card>
-        <disruptions-card-group class="is-hidden-desktop"></disruptions-card-group>
+        <disruptions-card-group class="is-hidden-desktop"
+        :disruption-board="disruptionBoard"
+        :disruption-board-variations="disruptionBoardVariations"
+        :disruption-initial="disruptionInitial"
+        :disruption-initial-variations="disruptionInitialVariations"
+        :disruption-timer="disruptionTimer"
+        :disruption-timer-variations="disruptionTimerVariations"
+        :disruption-condition="disruptionCondition" :disruption-condition-trigger="disruptionConditionTrigger"></disruptions-card-group>
       </div>
       <div class="section_ftr addedSupp">
         <div class="addedSupp_header">Added Support</div>

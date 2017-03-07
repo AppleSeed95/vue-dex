@@ -61,8 +61,6 @@ export default {
       let teams = _.split(this.stageData.suggestedTeam, '\n')
       let teamNo1 = _.map(_.compact(_.split(teams.shift(), ',')), _.trim)
       let teamOthers = _.compact(_.drop(teams))
-      console.log('all teams: ', teams)
-      console.log('all teams other: ', teamOthers)
 
       // mega thumbnails
       let configMega = {name: _.trim(this.megaSlot(teamNo1)) || '', isMega: true, separateDivision: ''}
@@ -92,9 +90,7 @@ export default {
             teamFullTemp.push(data)
           })
         })
-
         this.teamsOthers.push(teamFullTemp)
-        console.log('team other complete: ', this.teamsOthers)
       })
     },
     updateMegaSlots() {

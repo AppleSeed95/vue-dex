@@ -41,6 +41,16 @@
         @extend %pokemon-slot;
       }
     }
+
+    @include mobile() {
+      flex-direction: column;
+
+      &_header {
+        width: 100%;
+        border-radius: 15px 15px 0 0;
+        text-align: center;
+      }
+    }
   }
 }
 

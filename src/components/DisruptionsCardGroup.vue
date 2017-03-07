@@ -4,52 +4,40 @@
     <div class="columns card_tabs is-mobile">
       <div v-for="mode, index in disruptionModes" :class="['column is-gapless', isCurrentMode(mode)]" @click="switchMode(index)">{{ mode }}</div>
     </div>
-    <div class="container card_body" v-if="currentMode == 'Board'">
+    <div :class="[currentMode == 'Board' ? 'show' : '' ,'container card_body']">
       <ul class="disruptions">
-        <li>Mode is Board now</li>
-        <li>Any of the following
+        <li v-for="disruption in disruptionBoard">{{ capitalize(disruption) }}</li>
+        <li v-if="disruptionBoardVariations"> {{ 'Any of the following:' }}
           <ul>
-            <li>Adds 345 blocks if you don't make a combo of 6</li>
-            <li>Adds 345 blocks if you don't make a combo of 6</li>
-            <li>Adds 345 blocks if you don't make a combo of 6</li>
+            <li v-for="variation in disruptionBoardVariations"> {{ variation }}</li>
           </ul>
         </li>
       </ul>
     </div>
-    <div class="container card_body" v-if="currentMode == 'Initial'">
+    <div :class="[currentMode == 'Initial' ? 'show' : '' ,'container card_body']">
       <ul class="disruptions">
-        <li>Mode is Initial</li>
-        <li>Any of the following
+        <li v-for="disruption in disruptionInitial">{{ capitalize(disruption) }}</li>
+        <li v-if="disruptionInitialVariations"> {{ 'Any of the following:' }}
           <ul>
-            <li>Adds 345 blocks if you don't make a combo of 6</li>
-            <li>Adds 345 blocks if you don't make a combo of 6</li>
-            <li>Adds 345 blocks if you don't make a combo of 6</li>
+            <li v-for="variation in disruptionInitialVariations"> {{ variation }}</li>
           </ul>
         </li>
       </ul>
     </div>
-    <div class="container card_body" v-if="currentMode == 'Timer'">
+    <div :class="[currentMode == 'Timer' ? 'show' : '' ,'container card_body']">
       <ul class="disruptions">
-        <li>Mode is Timer now</li>
-        <li>Any of the following
+        <li v-for="disruption in disruptionTimer">{{ capitalize(disruption) }}</li>
+        <li v-if="disruptionTimerVariations"> {{ 'Any of the following:' }}
           <ul>
-            <li>Adds 345 blocks if you don't make a combo of 6</li>
-            <li>Adds 345 blocks if you don't make a combo of 6</li>
-            <li>Adds 345 blocks if you don't make a combo of 6</li>
+            <li v-for="variation in disruptionTimerVariations"> {{ variation }}</li>
           </ul>
         </li>
       </ul>
     </div>
-    <div class="container card_body" v-if="currentMode == 'Conditional'">
+    <div :class="[currentMode == 'Conditional' ? 'show' : '' ,'container card_body']">
       <ul class="disruptions">
-        <li>Mode is Conditional now</li>
-        <li>Any of the following
-          <ul>
-            <li>Adds 345 blocks if you don't make a combo of 6</li>
-            <li>Adds 345 blocks if you don't make a combo of 6</li>
-            <li>Adds 345 blocks if you don't make a combo of 6</li>
-          </ul>
-        </li>
+        <li v-if="disruptionConditionTrigger"> <strong>Condition:</strong> {{ disruptionConditionTrigger }}</li>
+        <li v-for="disruption in disruptionCondition">{{ capitalize(disruption) }}</li>
       </ul>
     </div>
   </div>
@@ -65,6 +53,7 @@ export default {
       disruptionModeActive: 0
     }
   },
+  props: ['disruptionBoard', 'disruptionInitial', 'disruptionTimer', 'disruptionCondition', 'disruptionConditionTrigger', 'disruptionBoardVariations', 'disruptionInitialVariations', 'disruptionTimerVariations'],
   computed: {
     currentMode (mode) {
       return this.disruptionModes[this.disruptionModeActive]
@@ -76,6 +65,9 @@ export default {
     },
     isCurrentMode(mode) {
       return mode == this.currentMode ? 'is-active' : ''
+    },
+    capitalize(string) {
+      return _.upperFirst(string)
     }
   },
   mounted () {
@@ -89,5 +81,13 @@ export default {
 @import "../styles/base/_all.scss";
 @import "~bulma/bulma.sass";
 @import "../styles/components/_card.scss";
+
+.card_body {
+  display: none;
+
+  &.show {
+    display: block;
+  }
+}
 
 </style>
