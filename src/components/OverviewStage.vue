@@ -1,11 +1,11 @@
 <template>
   <div class="column card card-overview card-overview-stage is-6">
-    <div class="modal">
+    <div class="modal" :class="modalOpened ? 'show' : ''">
       <div class="modal-background"></div>
       <div class="modal-content">
         <img :src="layout" alt="stage view" class="stage_view">
       </div>
-      <button class="modal-close"></button>
+      <button class="modal-close" @click="closeModal"></button>
     </div>
     <h2>Stage {{ number }}</h2>
     <div :class="['stage_supportLimit', parseInt(supportLim) >= 4 ? 'stage_supportLimit-4' : 'stage_supportLimit-3']"></div>
@@ -52,7 +52,7 @@ export default {
   data () {
     return {
       number: '?',
-      layout: 'http://i.imgur.com/YMR571b.png',
+      layout: '/static/img/pikachu-angry.svg',
       moves: '?',
       sRank: '?',
       hitPts: '?',
@@ -102,7 +102,7 @@ export default {
     }
   },
   mounted () {
-    // bus.$on('update', this.updateStageHP)
+
   }
 }
 </script>
@@ -112,5 +112,20 @@ export default {
 @import "../styles/base/_all.scss";
 @import "~bulma/bulma.sass";
 @import "../styles/components/_card.scss";
+
+.modal {
+  &.show {
+    display: block;
+  }
+
+  &-content {
+    margin: 20px auto;
+    width: calc(100% - 20px);
+  }
+
+  &-close {
+    background-color: transparentize($pal-black, 0.7);
+  }
+}
 
 </style>
