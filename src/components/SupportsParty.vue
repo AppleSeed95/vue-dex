@@ -6,7 +6,7 @@
         <img :src="megaSlot ? megaSlot.pokemonIcon : ''" alt="Mega Slot">
       </div>
       <div v-for="support in supportSlots" :class="['card-party_slot', support]">
-        <img :src="support ? support.pokemonIcon : ''" alt="Support Slot">
+        <img :src="support ? support.pokemonIcon : ''" :alt="support ? support.pokemonName : '?'">
       </div>
     </div>
   </div>

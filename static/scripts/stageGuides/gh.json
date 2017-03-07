@@ -67,10 +67,10 @@
 		"initialBoardSetup": "http://i.imgur.com/SzEpecq.png",
 		"disruptions": "Board: Rocks on columns 1-2-5-6\nInitial: none\nTimer: Add a column of rocks after 3 moves",
 		"pokemon": 4,
-		"recommendedParty": "[Gyarados-S]/\n[Gengar] / [Mewtwo X]\n\nLucario, Machamp, Gallade, Conkeldurr",
+		"recommendedParty": "[Gyarados-S]/\n[Gengar] / [Mewtwo-X]\n\nLucario, Machamp, Gallade, Conkeldurr",
 		"clearingStrategy": "M-Gengar and your optimized squad should take this.\n\nLucario may be better off being a Support with its ability.",
 		"srankingStrategy": "Moves: At least 4 moves left\n\nWith its humongous HP, you should probably go for Moves+5 for S-Rank.",
-		"suggestedTeam": "[Gengar], Lucario, Gallade, Conkeldurrr\n\n[Mewtwo X], Lucario, Gallade, Machamp",
+		"suggestedTeam": "[Gengar], Lucario, Gallade, Conkeldurr\n\n[Mewtwo-X], Lucario, Gallade, Machamp",
 		"basePower": 30,
 		"ability": "Sleep Combo"
 	},

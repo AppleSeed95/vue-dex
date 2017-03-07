@@ -11,7 +11,7 @@
       <h2 class="section_title">Suggested Team</h2>
       <div class="columns parties">
         <supports-party v-if="teamOptimal && teamOptimal.length > 0" :teamData="teamOptimal" party-title="Optimal"></supports-party>
-        <supports-party v-if="teamAlt && teamAlt.length > 0" :teamData="teamAlt" party-title="Alternate"></supports-party>
+        <supports-party v-if="teamsOthers && teamsOthers.length > 0" v-for="team in teamsOthers" :teamData="team" party-title="Alternate"></supports-party>
       </div>
     </div>
   </section>
@@ -28,8 +28,7 @@ export default {
   data () {
     return {
       teamOptimal: [],
-      teamsOther: [],
-      teamAlt: [],
+      teamsOthers: [],
       slotsMega: [],
       slotsMain: [],
       slotsExpert: [],
@@ -52,29 +51,50 @@ export default {
   methods: {
     resetData() {
       this.teamOptimal = []
-      this.teamsOther = []
-      this.teamAlt = []
+      this.teamsOthers = []
       this.slotsMega = []
       this.slotsMain = []
       this.slotsExpert = []
       this.slotsSpecial = []
     },
     updateTeam() {
-      let teams = _.compact(_.split(this.stageData.suggestedTeam, '\n'))
-      let team_1 = _.map(_.compact(_.split(teams.shift(), ',')), _.trim)
+      let teams = _.split(this.stageData.suggestedTeam, '\n')
+      let teamNo1 = _.map(_.compact(_.split(teams.shift(), ',')), _.trim)
+      let teamOthers = _.compact(_.drop(teams))
+      console.log('all teams: ', teams)
+      console.log('all teams other: ', teamOthers)
 
       // mega thumbnails
-      let configMega = {name: _.trim(this.megaSlot(team_1)) || '', isMega: true, separateDivision: ''}
+      let configMega = {name: _.trim(this.megaSlot(teamNo1)) || '', isMega: true, separateDivision: ''}
       Processor.getStagePokemon(configMega).then((data) => {
         this.teamOptimal.push(data)
       })
 
       // supports thumbnails
-      _.each(this.supportSlots(team_1), (support) => {
+      _.each(this.supportSlots(teamNo1), (support) => {
         let configSupport = {name: _.trim(support) || '', isMega: false, separateDivision: ''}
         Processor.getStagePokemon(configSupport).then(data => {
           this.teamOptimal.push(data)
         })
+      })
+
+      _.each(teamOthers, team => {
+        let teamFullTemp = []
+
+        let configMegaTemp = {name: _.trim(this.megaSlot(team)) || '', isMega: true, separateDivision: ''}
+        Processor.getStagePokemon(configMegaTemp).then((data) => {
+          teamFullTemp.push(data)
+        })
+
+        _.each(this.supportSlots(team), (support) => {
+          let configSupport = {name: _.trim(support) || '', isMega: false, separateDivision: ''}
+          Processor.getStagePokemon(configSupport).then(data => {
+            teamFullTemp.push(data)
+          })
+        })
+
+        this.teamsOthers.push(teamFullTemp)
+        console.log('team other complete: ', this.teamsOthers)
       })
     },
     updateMegaSlots() {
