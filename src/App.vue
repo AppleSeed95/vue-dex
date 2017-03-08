@@ -53,7 +53,6 @@ import _ from 'lodash'
 import $ from 'jquery'
 import easyAutocomplete from 'easy-autocomplete'
 
-import {router} from './main'
 import Stage from 'components/Stage.vue'
 import * as Resources from './resources'
 
