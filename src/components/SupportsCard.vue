@@ -3,7 +3,7 @@
     <div class="card_hdr">{{ this.supportsTitle }}</div>
     <div class="container card_body">
       <ul class="supports columns is-multiline is-mobile">
-        <li v-for="slot in slots" class="column is-narrow">
+        <li v-for="slot in slots" class="column is-narrow" :data-attr="`${slot.pokemonName} - stage ${slot.location}`">
           <img :src="slot.pokemonIcon || ''" alt="slot">
         </li>
       </ul>

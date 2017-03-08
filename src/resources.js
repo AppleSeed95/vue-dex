@@ -4,7 +4,7 @@ import _ from 'lodash'
 const mainStageCap = 530;
 const expertStageCap = 45;
 
-const pokemonCollectionUrl = './assets/scripts/pokemonCollection.json'
+const pokemonCollectionUrl = './static/scripts/pokemonCollection.json'
 const expertStageUrl = './assets/scripts/expertGuides/expert.json'
 
 const stageCollections = [

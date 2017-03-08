@@ -59,6 +59,7 @@ export default {
       console.log('stage data: ', this.stageData);
     }, 1000),
     getUrlFromId () {
+      console.log('current stage id: ', this.stageIdApp);
       this.stageUrlStage = Resources.getStageUrl(1, this.stageIdApp)
     }
   },

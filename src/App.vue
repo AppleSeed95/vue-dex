@@ -11,9 +11,9 @@
     <nav class="level nav-stages">
       <div class="level-left">
         <form>Stage
-          <span>
-                  <input v-model="stageIdApp" class="stagesSelector" type="text" placeholder="1" @keyup.enter.prevent="submit">
-                </span>
+          <span class="eac">
+            <input id="stage-selector" v-model="stageIdApp" class="stagesSelector" type="text" placeholder="1" @keyup.enter.prevent="submit">
+          </span>
         </form>
       </div>
       <div class="level-right">
@@ -50,11 +50,12 @@
 
 <script>
 import _ from 'lodash'
+import $ from 'jquery'
+import easyAutocomplete from 'easy-autocomplete'
 
 import {router} from './main'
 import Stage from 'components/Stage.vue'
 import * as Resources from './resources'
-import bus from './bus.js'
 
 export default {
   data() {
@@ -85,22 +86,44 @@ export default {
       } else {
         this.stickUp = false
       }
-    },
-    /*
-    submit() {
-      router.push({
-        name: 'stage',
-        params: {
-          stageId: this.stageIdApp
-        }
-      })
     }
-    */
   },
   mounted () {
     this.$nextTick(() => {
       window.addEventListener('scroll', this.calculatePosY);
       this.calculatePosY()
+      let self = this
+
+      let options = {
+				url: Resources.pokemonCollectionUrl,
+				listLocation: "main",
+				getValue: "pokemonName",
+				list: {
+					match: {
+						enabled: true
+					},
+					onClickEvent: function() {
+						let stageId = _.parseInt($('#stage-selector').getSelectedItemData()['location'])
+            if (isNaN(stageId)) {
+              self.stageIdApp = 0
+              console.log('invalid ', stageId)
+            } else {
+              self.stageIdApp = _.trim(_.toString(stageId))
+              console.log('clicked at ', stageId)
+            }
+            self.$forceUpdate()
+					},
+				},
+				highlightPhrase: false,
+				template: {
+          type: "custom",
+        		method: function(value, item) {
+        			return "<strong>" + value + " </strong> @" + item.location;
+        		}
+				}
+			}
+
+      $('#stage-selector').easyAutocomplete(options)
     })
   }
 }
@@ -109,6 +132,7 @@ export default {
 <style lang="scss">@import "./styles/base/_all.scss";
 @import "~bulma/bulma.sass";
 @import "./styles/components/_all.scss";
+@import "~easy-autocomplete/src/sass/easy-autocomplete.scss";
 
 html {
     font-size: 16px;
@@ -133,6 +157,52 @@ body {
 .nav-right {
     margin-right: 40px;
 }
+
+.eac {
+  display: inline-block;
+  margin-left: 10px;
+
+  input {
+    border: none;
+    border-radius: 0;
+    border-bottom: 3px solid $pal-navy;
+    box-shadow: none;
+    min-width: 180px;
+  }
+}
+
+.easy-autocomplete-container {
+  ul {
+    border-top: none;
+    box-shadow: $shadow-default;
+  }
+
+  ul li {
+    padding: 10px 12px;
+    border: none;
+
+    div {
+      @include text-std;
+      @include font-size(12px/14);
+      text-transform: none;
+
+      strong {
+        @include font-size(12px/14);
+        font-weight: 700;
+      }
+    }
+
+    &.selected {
+      background: $pal-navy;
+      color: $pal-white;
+
+      strong {
+        color: $pal-white;
+      }
+    }
+  }
+}
+
 @include mobile() {
     .nav-right {
         margin-right: 20px;

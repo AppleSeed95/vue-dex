@@ -49,6 +49,7 @@ export default {
   },
   watch: {
     stageData() {
+      this.resetData()
       this.updateDisruptions()
     }
   },
@@ -58,6 +59,18 @@ export default {
   },
   props: ['stageData'],
   methods: {
+    resetData() {
+      this.disruptionBoard = []
+      this.disruptionInitial = []
+      this.disruptionTimer = []
+      this.disruptionCondition = null
+      this.disruptionConditionTrigger = null
+      this.disruptionBoardVariations = []
+      this.disruptionInitialVariations = []
+      this.disruptionTimerVariations = []
+      this.disruptionSupport = null
+      this.disruptionSupportReplace = null
+    },
     updateDisruptions() {
       let disruptionsCollection = _.compact(_.split(this.stageData.disruptions, '\n'))
       let disruptionBoard = '', disruptionInitial = '', disruptionTimer = '', disruptionCond = '', disruptionCondTrigger = ''

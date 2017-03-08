@@ -120,6 +120,7 @@ export default {
         Processor.getStagePokemon(configSupportMain).then(data => {
           if (data) {
             this.slotsMain.push(data)
+            console.log('main stage support: ', data);
           }
         })
 
