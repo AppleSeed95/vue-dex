@@ -85,6 +85,9 @@ export default {
       } else {
         this.stickUp = false
       }
+    },
+    submit() {
+
     }
   },
   mounted () {
@@ -105,10 +108,8 @@ export default {
 						let stageId = _.parseInt($('#stage-selector').getSelectedItemData()['location'])
             if (isNaN(stageId)) {
               self.stageIdApp = 0
-              console.log('invalid ', stageId)
             } else {
               self.stageIdApp = _.trim(_.toString(stageId))
-              console.log('clicked at ', stageId)
             }
             self.$forceUpdate()
 					},
@@ -116,8 +117,8 @@ export default {
 				highlightPhrase: false,
 				template: {
           type: "custom",
-        		method: function(value, item) {
-        			return "<strong>" + value + " </strong> @" + item.location;
+        		method: function(name, pokemon) {
+        			return "<strong>" + name + " </strong> @" + pokemon.location;
         		}
 				}
 			}
@@ -167,6 +168,10 @@ body {
     border-bottom: 3px solid $pal-navy;
     box-shadow: none;
     min-width: 180px;
+
+    @include mobile() {
+      min-width: 140px;
+    }
   }
 }
 

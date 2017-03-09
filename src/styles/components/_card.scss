@@ -155,9 +155,22 @@
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
       background-color: $pal-turquoise;
       background-repeat: no-repeat;
-
       background-position: 50%;
       z-index: 1;
+
+      &:after {
+        @extend %tooltip;
+        content: 'Number of supports you have';
+        left: 125%;
+        bottom: 10px;
+      }
+
+      &:hover {
+        &:after {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
 
       &-4 {
         background-image: url("./../assets/img/misc/supportLim-4.png");
@@ -202,6 +215,24 @@
       right: -65px;
       top: 50%;
       transform: translateY(-50%);
+
+
+    }
+
+    @include mobile() {
+      margin: 0 10px;
+
+      h2 {
+        margin-right: 0;
+      }
+
+      .stage_pokemonThumbnail {
+        margin: 0 auto;
+        transform: none;
+        top: 0;
+        right: 0;
+        position: relative;
+      }
     }
   }
 }
@@ -270,20 +301,7 @@
       }
 
       &:after {
-        position: absolute;
-        content: attr(data-attr);
-        padding: 10px;
-        text-align: center;
-        bottom: -55px;
-        left: 0;
-        min-width: 180px;
-        background: $pal-navy;
-        border-radius: 5px;
-        visibility: hidden;
-        opacity: 0;
-        z-index: 1;
-        transition: all 0.25s ease;
-        color: $pal-white;
+        @extend %tooltip;
       }
 
       &:hover {

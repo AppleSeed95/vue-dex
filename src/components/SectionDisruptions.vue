@@ -6,7 +6,7 @@
         <disruptions-card :disruptions="disruptionBoard" :variations="disruptionBoardVariations" disruption-title="Board" class="is-hidden-touch"></disruptions-card>
         <disruptions-card :disruptions="disruptionInitial" :variations="disruptionInitialVariations" disruption-title="Initial"  class="is-hidden-touch"></disruptions-card>
         <disruptions-card :disruptions="disruptionTimer" :variations="disruptionTimerVariations" disruption-title="Timer"  class="is-hidden-touch"></disruptions-card>
-        <disruptions-card :disruptions="disruptionCondition" :disruptionsTrigger="disruptionConditionTrigger" disruption-title="Conditional" class="is-hidden-touch"></disruptions-card>
+        <disruptions-card :disruptions="disruptionCondition" :disruptionsTrigger="disruptionConditionTrigger" disruption-title="Condition" class="is-hidden-touch"></disruptions-card>
         <disruptions-card-group class="is-hidden-desktop"
         :disruption-board="disruptionBoard"
         :disruption-board-variations="disruptionBoardVariations"
@@ -75,7 +75,7 @@ export default {
       let disruptionsCollection = _.compact(_.split(this.stageData.disruptions, '\n'))
       let disruptionBoard = '', disruptionInitial = '', disruptionTimer = '', disruptionCond = '', disruptionCondTrigger = ''
 
-      console.log(disruptionsCollection)
+      console.log('disruptions:', disruptionsCollection)
 
       _.map(disruptionsCollection, (line) => {
         if (_.includes(_.toLower(line), 'board:') && line.length > line.indexOf(':')) {

@@ -34,7 +34,7 @@
         </li>
       </ul>
     </div>
-    <div :class="[currentMode == 'Conditional' ? 'show' : '' ,'container card_body']">
+    <div :class="[currentMode == 'Condition' ? 'show' : '' ,'container card_body']">
       <ul class="disruptions">
         <li v-if="disruptionConditionTrigger"> <strong>Condition:</strong> {{ disruptionConditionTrigger }}</li>
         <li v-for="disruption in disruptionCondition">{{ capitalize(disruption) }}</li>
@@ -49,7 +49,7 @@ import _ from 'lodash'
 export default {
   data () {
     return {
-      disruptionModes: ['Board', 'Initial', 'Timer', 'Conditional'],
+      disruptionModes: ['Board', 'Initial', 'Timer', 'Condition'],
       disruptionModeActive: 0
     }
   },

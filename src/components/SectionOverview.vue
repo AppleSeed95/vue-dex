@@ -20,7 +20,7 @@ import bus from './../bus'
 export default {
   data () {
     return {
-      viewIsPokemon: false,
+      viewIsPokemon: true,
       screenMode: ''
     }
   },

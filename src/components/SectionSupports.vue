@@ -62,19 +62,21 @@ export default {
       let teamNo1 = _.map(_.compact(_.split(teams.shift(), ',')), _.trim)
       let teamOthers = _.compact(_.drop(teams))
 
-      // mega thumbnails
       let configMega = {name: _.trim(this.megaSlot(teamNo1)) || '', isMega: true, separateDivision: ''}
-      Processor.getStagePokemon(configMega).then((data) => {
-        this.teamOptimal.push(data)
-      })
+      if (configMega.name.length > 0) {
+        Processor.getStagePokemon(configMega).then((data) => {
+          this.teamOptimal.push(data)
+        })
+      }
 
-      // supports thumbnails
       _.each(this.supportSlots(teamNo1), (support) => {
         let configSupport = {name: _.trim(support) || '', isMega: false, separateDivision: ''}
         Processor.getStagePokemon(configSupport).then(data => {
           this.teamOptimal.push(data)
         })
       })
+
+      console.log('team optimal final: ', this.teamOptimal)
 
       _.each(teamOthers, team => {
         let teamFullTemp = []
@@ -105,8 +107,7 @@ export default {
           }
         })
       })
-
-      console.log('mega slots: ', this.slotsMega)
+      //console.log('mega slots: ', this.slotsMega)
     },
     updateOtherSlots() {
       let supports = Processor.getOtherSupports(this.stageData.recommendedParty)
@@ -120,7 +121,6 @@ export default {
         Processor.getStagePokemon(configSupportMain).then(data => {
           if (data) {
             this.slotsMain.push(data)
-            console.log('main stage support: ', data);
           }
         })
 
@@ -136,15 +136,11 @@ export default {
           }
         })
       })
-      /*
-      console.log('main slots: ', this.slotsMain)
-      console.log('expert slots: ', this.slotsExpert)
-      console.log('special slots: ', this.slotsSpecial)
-      */
     },
     megaSlot(teamArr) {
       let target = Processor.getMembers(teamArr)[0]
       if (target) {
+        console.log('mega slot target: ', target)
         return target.slice(1, -1)
       } else {
         return ''
