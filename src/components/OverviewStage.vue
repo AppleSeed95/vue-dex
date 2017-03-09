@@ -16,17 +16,21 @@
     <div class="columns">
       <div class="column is-7">
         <div class="glances">
+          <div v-if="requirements > 1" class="glance glance-reqs">
+            <strong>Requirements</strong>
+            <span>{{ requirements }} S-Ranks</span>
+          </div>
           <div class="glance glance-hp">
             <strong>Hit Points</strong>
             <span>{{ hitPts }}</span>
           </div>
           <div class="glance glance-moves">
-            <strong>Moves</strong>
-            <span>{{ moves }}</span>
+            <strong>{{ this.time.length > 1 ? 'Time' : 'Moves' }}</strong>
+            <span>{{ this.time.length > 1 ? time : moves }}</span>
           </div>
           <div class="glance glance-sranks">
             <strong>S-Ranks</strong>
-            <span>{{ `${sRank} / ${moves}` }}</span>
+            <span>{{ this.time.length > 1 ? `${sRank}s` : `${sRank} / ${moves}` }}</span>
           </div>
           <div class="glance glance-layout">
             <strong @click="openModal">Click for starting board</strong>
@@ -44,9 +48,6 @@
 import _ from 'lodash'
 import * as api from './../api'
 import * as Resources from './../resources'
-import * as Processor from './../processor'
-
-import bus from './../bus'
 
 export default {
   data () {
@@ -54,9 +55,11 @@ export default {
       number: '?',
       layout: '/static/img/pikachu-angry.svg',
       moves: '?',
+      time: '?',
       sRank: '?',
       hitPts: '?',
       supportLim: '',
+      requirements: '?',
       modalOpened: false
     }
   },
@@ -64,7 +67,7 @@ export default {
   watch: {
     stageData() {
       this.updateStageNo()
-
+      this.updateRanksRequirements()
       this.updateHP()
       this.updateMoves()
       this.updateSRanks()
@@ -83,7 +86,21 @@ export default {
       this.hitPts = this.stageData.hitPts
     },
     updateMoves() {
-      this.moves = this.stageData.moves
+      this.moves = '?'
+      this.time = '?'
+      if (this.stageData.moves) {
+        this.moves = this.stageData.moves
+      }
+      if (this.stageData.time) {
+        this.time = this.stageData.time
+      }
+    },
+    updateRanksRequirements() {
+      this.requirements = ''
+      if (this.stageData.srank) {
+        console.log('srank reqs: ', this.stageData.srank)
+        this.requirements = _.parseInt(this.stageData.srank)
+      }
     },
     updateSRanks() {
       this.sRank = this.stageData.srankMoves
