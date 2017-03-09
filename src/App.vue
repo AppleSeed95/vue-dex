@@ -19,7 +19,7 @@
       <div class="level-right">
         <div class="mode">
           <input type="checkbox" id="switch-toggle" value="mode">
-          <label for="switch-toggle"></label>
+          <label for="switch-toggle" @click="toggleMode"></label>
           <h2 class="modeIndicator modeIndicator-main">Main</h2>
           <h2 class="modeIndicator modeIndicator-expert">Expert</h2>
         </div>
@@ -29,7 +29,7 @@
   <div class="container">
     <!-- STAGE COMPONENT -->
     <!-- <router-view></router-view> -->
-    <stage :stageIdApp="this.stageIdApp" :stageUrlApp="this.stageUrl"></stage>
+    <stage :stageIdApp="this.stageIdApp" :mode="stageMode"></stage>
   </div>
   <footer class="footer" :style="{padding: '30px 0 0 0'}">
     <div class="container">
@@ -61,6 +61,7 @@ export default {
     return {
       stageIdApp: 0,
       stageUrl: '',
+      stageMode: 'main',
       stickUp: false,
       stickyStyling: {
         margin: 0,
@@ -88,6 +89,13 @@ export default {
     },
     submit() {
 
+    },
+    toggleMode() {
+      if (this.stageMode == 'main') {
+        this.stageMode = 'expert'
+      } else {
+        this.stageMode = 'main'
+      }
     }
   },
   mounted () {

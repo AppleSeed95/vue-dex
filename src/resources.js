@@ -76,11 +76,11 @@ function getStageUrl(mode, stageId) {
     return stageId <= phase.levelCap
   })
 
-  if (mode == 1) {
+  if (mode == 'main') {
     return stageId > 0 && stageId <= mainStageCap ? './static/scripts/stageGuides/' + targetPhase.stageUrl + '.json' : ''
   }
 
-  if (mode == 2) {
+  if (mode == 'expert') {
     return stageId > 0 && stageId <= expertStageCap ? './static/scripts/expertGuides/expert.json' : ''
   }
 }

@@ -35,9 +35,13 @@ export default {
     stageIdApp() {
       this.getUrlFromId()
       this.updateStageData()
+    },
+    mode() {
+      this.getUrlFromId()
+      this.updateStageData()
     }
   },
-  props: ['stageIdApp', 'stageUrlApp'],
+  props: ['stageIdApp', 'mode'],
   methods: {
     updateStageData: _.debounce(function () {
       let processorConfig = {
@@ -58,7 +62,7 @@ export default {
       console.log('FINAL STAGE DATA: ', this.stageData);
     }, 1000),
     getUrlFromId () {
-      this.stageUrlStage = Resources.getStageUrl(1, this.stageIdApp)
+      this.stageUrlStage = Resources.getStageUrl(this.mode, this.stageIdApp)
     }
   },
   mounted () {
