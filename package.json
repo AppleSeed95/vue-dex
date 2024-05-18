@@ -2,7 +2,7 @@
   "name": "vue-shuffle-dex",
   "version": "1.0.0",
   "description": "A vue.js stage guide for Pokemon Shuffle",
-  "author": "shelune",
+  "author": "AppleSeed",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
